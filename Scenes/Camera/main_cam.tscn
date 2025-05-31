@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://gefh7u00jr3d"]
+
+[ext_resource type="Script" uid="uid://blv1mpw8tic8b" path="res://Scenes/Camera/main_cam.gd" id="1_1c4o4"]
+
+[node name="MainCam" type="Camera2D" groups=["MainCamera"]]
+script = ExtResource("1_1c4o4")
+follow_distance = 100.0
+speed = 3.0

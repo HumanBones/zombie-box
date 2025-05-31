@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PowerUp" load_steps=2 format=3 uid="uid://d4a3i1erd5pw5"]
+
+[ext_resource type="Script" uid="uid://2wtlfc3gsur0" path="res://Resources/Script/power_up.gd" id="1_oo8hf"]
+
+[resource]
+script = ExtResource("1_oo8hf")
+name = "Gun pratice"
+decription = "Increases your weapon range by"
+amount = 0.2
+metadata/_custom_type_script = "uid://2wtlfc3gsur0"

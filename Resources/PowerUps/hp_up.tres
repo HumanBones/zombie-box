@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PowerUp" load_steps=2 format=3 uid="uid://c471vhjqmxptu"]
+
+[ext_resource type="Script" uid="uid://2wtlfc3gsur0" path="res://Resources/Script/power_up.gd" id="1_02k8c"]
+
+[resource]
+script = ExtResource("1_02k8c")
+name = "One Up"
+decription = "Increases your hp by"
+amount = 1.0
+metadata/_custom_type_script = "uid://2wtlfc3gsur0"

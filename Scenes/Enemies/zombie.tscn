@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://chbj5tjhlx41d"]
+
+[ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="1_673kn"]
+[ext_resource type="Script" uid="uid://cr4d3nx2d3xgw" path="res://Scenes/Enemies/zombie.gd" id="1_yk0r7"]
+[ext_resource type="PackedScene" uid="uid://xn55x5wbcwvx" path="res://Scenes/Collision/hitbox.tscn" id="2_ttf1p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttf1p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yk0r7"]
+
+[node name="Zombie" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
+script = ExtResource("1_yk0r7")
+max_speed = 50.0
+max_hp = 100.0
+max_attack_speed = 1.0
+attack_range = 130.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_673kn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(4.52, 5)
+shape = SubResource("RectangleShape2D_ttf1p")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_ttf1p")]
+collision_layer = 4
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+scale = Vector2(6.49909, 6.27396)
+shape = SubResource("RectangleShape2D_yk0r7")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

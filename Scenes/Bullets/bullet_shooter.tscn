@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6vlx7rixjkjy"]
+
+[ext_resource type="Script" uid="uid://c7v5fux5enlwk" path="res://Scenes/Bullets/bullet_shooter.gd" id="1_ruwyb"]
+[ext_resource type="PackedScene" uid="uid://dya3dypewkuaw" path="res://Scenes/Bullets/bullet.tscn" id="2_ebucs"]
+
+[node name="BulletShooter" type="Node2D"]
+script = ExtResource("1_ruwyb")
+bullet_scene = ExtResource("2_ebucs")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

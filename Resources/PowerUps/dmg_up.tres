@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PowerUp" load_steps=2 format=3 uid="uid://cbu5qinofoc5i"]
+
+[ext_resource type="Script" uid="uid://2wtlfc3gsur0" path="res://Resources/Script/power_up.gd" id="1_u2j42"]
+
+[resource]
+script = ExtResource("1_u2j42")
+name = "Big Damage"
+decription = "Increases your bullet damage by"
+amount = 0.2
+metadata/_custom_type_script = "uid://2wtlfc3gsur0"

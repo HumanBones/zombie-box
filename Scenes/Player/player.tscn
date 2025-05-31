@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://bna856vlssqy5"]
+
+[ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="1_uvnfx"]
+[ext_resource type="Script" uid="uid://decjw8vspw5e3" path="res://Scenes/Player/player.gd" id="1_xpcdj"]
+[ext_resource type="PackedScene" uid="uid://xn55x5wbcwvx" path="res://Scenes/Collision/hitbox.tscn" id="2_a3d8c"]
+[ext_resource type="PackedScene" uid="uid://c6vlx7rixjkjy" path="res://Scenes/Bullets/bullet_shooter.tscn" id="4_mtuoh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3d8c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpcdj"]
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_xpcdj")
+start_speed = 300.0
+start_hp = 100.0
+start_attack_speed = 0.4
+start_attack_range = 500.0
+max_hp = 200.0
+max_speed = 400.0
+max_attack_speed = 3.0
+max_attack_range = 200.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(4.52, 2.48)
+shape = SubResource("RectangleShape2D_a3d8c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_uvnfx")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_a3d8c")]
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+scale = Vector2(5.96, 5.92)
+shape = SubResource("RectangleShape2D_xpcdj")
+
+[node name="BulletShooter" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("4_mtuoh")]
+defualt_attack_speed = 1.0
+parent = NodePath("..")
