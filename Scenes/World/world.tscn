@@ -1,24 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://b31h7wt7jmplu"]
+[gd_scene load_steps=7 format=3 uid="uid://b31h7wt7jmplu"]
 
 [ext_resource type="PackedScene" uid="uid://bna856vlssqy5" path="res://Scenes/Player/player.tscn" id="1_t1gg8"]
 [ext_resource type="PackedScene" uid="uid://gefh7u00jr3d" path="res://Scenes/Camera/main_cam.tscn" id="2_yp2ti"]
 [ext_resource type="PackedScene" uid="uid://8cpi60okfyde" path="res://Scenes/Talents/power_up.tscn" id="4_l1hd3"]
 [ext_resource type="PackedScene" uid="uid://v843jhr60f5l" path="res://Scenes/Spawner/enemy_spawner.tscn" id="4_vadfg"]
+[ext_resource type="PackedScene" uid="uid://bovcwovo2l06o" path="res://Scenes/Arena/arena.tscn" id="5_l1hd3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_yp2ti"]
-vertices = PackedVector2Array(7511.74, 1094.39, -7562.82, 1071.81, -7562.82, -1039.52, 7691.61, -1065.32)
+vertices = PackedVector2Array(41.3828, -39.0312, -15991.8, -6.78125, -16056, -2198.82, -61.3984, -2218.17)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(7520.95, 1104.41, -7572.82, 1081.8, -7572.82, -1049.51, 7702.49, -1075.34)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(51.8686, -29.0633, -16001.5, 3.22925, -16066.3, -2208.81, -51.8686, -2228.19)])
 
 [node name="World" type="Node2D"]
 
+[node name="Arena" parent="." instance=ExtResource("5_l1hd3")]
+
 [node name="Player" parent="." instance=ExtResource("1_t1gg8")]
+position = Vector2(1585, 774)
 
 [node name="MainCam" parent="." instance=ExtResource("2_yp2ti")]
 follow_distance = 10.0
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-scale = Vector2(-0.0771179, -0.309669)
+scale = Vector2(-0.199045, -0.733226)
 navigation_polygon = SubResource("NavigationPolygon_yp2ti")
 
 [node name="BulletHolder" type="Node2D" parent="." groups=["BulletHolder"]]
@@ -26,8 +30,22 @@ navigation_polygon = SubResource("NavigationPolygon_yp2ti")
 [node name="EnemyHolder" type="Node2D" parent="." groups=["EnemyHolder"]]
 
 [node name="Enemy_spawner" parent="." instance=ExtResource("4_vadfg")]
+position = Vector2(2837, 127)
+spawn_range = 500.0
+
+[node name="Enemy_spawner2" parent="." instance=ExtResource("4_vadfg")]
+position = Vector2(291, 1237)
+spawn_range = 500.0
+
+[node name="Enemy_spawner3" parent="." instance=ExtResource("4_vadfg")]
+position = Vector2(2692, 1200)
+spawn_range = 500.0
+
+[node name="Enemy_spawner4" parent="." instance=ExtResource("4_vadfg")]
+position = Vector2(349, 362)
 spawn_range = 500.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PowerUp" parent="CanvasLayer" instance=ExtResource("4_l1hd3")]
+visible = false

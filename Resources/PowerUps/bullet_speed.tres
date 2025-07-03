@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_g1mbc")
+index = "bullet_speed"
 name = "Fast Shoota"
 decription = "Increases your bullets speed by"
-amount = 0.2
+amount = 10.0
 metadata/_custom_type_script = "uid://2wtlfc3gsur0"

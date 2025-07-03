@@ -4,12 +4,15 @@ class_name Zombie
 
 signal died
 
+@export_category("Stats")
+@export_group("Max Stats")
 @export var max_speed : float
 @export var max_hp : float
-@export var max_attack_speed : float
 @export var attack_range : float
 
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
+@onready var attack_manager: EnemyAttackManager = $AttackManager
+@onready var health_bar: HealthBar = $HealthBar
 
 var speed : float
 var hp : float
@@ -22,7 +25,9 @@ func _ready() -> void:
 		target = get_tree().get_first_node_in_group("Player")
 	speed = max_speed
 	hp = max_hp
-	attack_speed = max_attack_speed
+	health_bar.hide()
+	health_bar.set_max_value(max_hp)
+	health_bar.set_value(hp)
 	
 
 func _physics_process(delta: float) -> void:
@@ -37,13 +42,17 @@ func _physics_process(delta: float) -> void:
 	
 	else:
 		velocity = Vector2.ZERO
+		attack_manager.attack()
 		
 	move_and_slide()
 
 func take_dmg(dmg : float) ->void:
+	health_bar.show()
 	hp -= dmg
+	health_bar.set_value(hp)
 	if hp < 0:
 		died.emit(self)
+		health_bar.hide()
 		die()
 
 func die() -> void:

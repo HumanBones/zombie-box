@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bna856vlssqy5"]
+[gd_scene load_steps=8 format=3 uid="uid://bna856vlssqy5"]
 
 [ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://decjw8vspw5e3" path="res://Scenes/Player/player.gd" id="1_xpcdj"]
 [ext_resource type="PackedScene" uid="uid://xn55x5wbcwvx" path="res://Scenes/Collision/hitbox.tscn" id="2_a3d8c"]
 [ext_resource type="PackedScene" uid="uid://c6vlx7rixjkjy" path="res://Scenes/Bullets/bullet_shooter.tscn" id="4_mtuoh"]
+[ext_resource type="Script" uid="uid://cgtird4fdbeb8" path="res://Scenes/Player/player_upgrade_manager.gd" id="5_htcer"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3d8c"]
 
@@ -40,3 +41,11 @@ shape = SubResource("RectangleShape2D_xpcdj")
 [node name="BulletShooter" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("4_mtuoh")]
 defualt_attack_speed = 1.0
 parent = NodePath("..")
+default_bullet_size = 1.0
+default_bullet_speed = 600.0
+defualt_bullet_dmg = 1.0
+
+[node name="PlayerUpgradeManager" type="Node2D" parent="." node_paths=PackedStringArray("player", "bullet_shooter") groups=["PlayerUpgradeManager"]]
+script = ExtResource("5_htcer")
+player = NodePath("..")
+bullet_shooter = NodePath("../BulletShooter")

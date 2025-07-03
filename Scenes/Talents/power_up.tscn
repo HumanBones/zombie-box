@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://8cpi60okfyde"]
+[gd_scene load_steps=11 format=3 uid="uid://8cpi60okfyde"]
 
+[ext_resource type="Script" uid="uid://dev63s7j3ntb6" path="res://Scenes/Talents/power_up.gd" id="1_deauy"]
 [ext_resource type="PackedScene" uid="uid://41wqw36spx2u" path="res://Scenes/Talents/power_up_card.tscn" id="1_nnb52"]
 [ext_resource type="Resource" uid="uid://c471vhjqmxptu" path="res://Resources/PowerUps/hp_up.tres" id="2_hooia"]
+[ext_resource type="Script" uid="uid://2wtlfc3gsur0" path="res://Resources/Script/power_up.gd" id="3_73s20"]
 [ext_resource type="Resource" uid="uid://d4a3i1erd5pw5" path="res://Resources/PowerUps/range_up.tres" id="3_deauy"]
+[ext_resource type="Resource" uid="uid://camx0pgi104ja" path="res://Resources/PowerUps/bullet_size.tres" id="4_2hrcd"]
 [ext_resource type="Resource" uid="uid://cwogl4rjxdu5j" path="res://Resources/PowerUps/speed_up.tres" id="4_xdynv"]
+[ext_resource type="Resource" uid="uid://dfjdxbt21bvow" path="res://Resources/PowerUps/bullet_speed.tres" id="5_82hyu"]
+[ext_resource type="Resource" uid="uid://cbu5qinofoc5i" path="res://Resources/PowerUps/dmg_up.tres" id="6_12y5l"]
+[ext_resource type="Resource" uid="uid://nllj7go7m1mb" path="res://Resources/PowerUps/fire_rate_up.tres" id="7_dte7k"]
 
 [node name="PowerUp" type="Control"]
 layout_mode = 3
@@ -12,6 +18,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_deauy")
+power_up_card_scene = ExtResource("1_nnb52")
+power_up_array = Array[ExtResource("3_73s20")]([ExtResource("4_2hrcd"), ExtResource("5_82hyu"), ExtResource("6_12y5l"), ExtResource("7_dte7k"), ExtResource("2_hooia"), ExtResource("3_deauy"), ExtResource("4_xdynv")])
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -30,15 +39,3 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 200
-
-[node name="PowerUpCard" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_nnb52")]
-layout_mode = 2
-power_up_data = ExtResource("2_hooia")
-
-[node name="PowerUpCard2" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_nnb52")]
-layout_mode = 2
-power_up_data = ExtResource("3_deauy")
-
-[node name="PowerUpCard3" parent="MarginContainer/HBoxContainer" instance=ExtResource("1_nnb52")]
-layout_mode = 2
-power_up_data = ExtResource("4_xdynv")

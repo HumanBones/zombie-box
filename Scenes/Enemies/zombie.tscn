@@ -1,19 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://chbj5tjhlx41d"]
+[gd_scene load_steps=9 format=3 uid="uid://chbj5tjhlx41d"]
 
 [ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="1_673kn"]
 [ext_resource type="Script" uid="uid://cr4d3nx2d3xgw" path="res://Scenes/Enemies/zombie.gd" id="1_yk0r7"]
 [ext_resource type="PackedScene" uid="uid://xn55x5wbcwvx" path="res://Scenes/Collision/hitbox.tscn" id="2_ttf1p"]
+[ext_resource type="Script" uid="uid://dlayxy0phuihq" path="res://Scenes/Enemies/attack_manager.gd" id="4_8d8mn"]
+[ext_resource type="PackedScene" uid="uid://cdytee8i1eyp0" path="res://Scenes/HealthBarUI/health_bar.tscn" id="5_o6bce"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttf1p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yk0r7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8d8mn"]
+radius = 96.1873
 
 [node name="Zombie" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4
 script = ExtResource("1_yk0r7")
 max_speed = 50.0
 max_hp = 100.0
-max_attack_speed = 1.0
 attack_range = 130.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -34,4 +38,28 @@ shape = SubResource("RectangleShape2D_yk0r7")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
+[node name="AttackManager" type="Node2D" parent="."]
+script = ExtResource("4_8d8mn")
+default_attack_speed = 1.0
+default_attack_dmg = 10.0
+
+[node name="Timer" type="Timer" parent="AttackManager"]
+one_shot = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_8d8mn")
+
+[node name="HealthBar" parent="." instance=ExtResource("5_o6bce")]
+offset_left = -78.0
+offset_top = -115.0
+offset_right = -78.0
+offset_bottom = -115.0
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="AttackManager/Timer" to="AttackManager" method="_on_timer_timeout"]
+[connection signal="area_entered" from="Hurtbox" to="AttackManager" method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="Hurtbox" to="AttackManager" method="_on_hurtbox_area_exited"]

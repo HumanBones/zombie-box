@@ -1,10 +1,13 @@
-[gd_resource type="Resource" script_class="PowerUp" load_steps=2 format=3 uid="uid://d4a3i1erd5pw5"]
+[gd_resource type="Resource" script_class="PowerUp" load_steps=3 format=3 uid="uid://d4a3i1erd5pw5"]
 
 [ext_resource type="Script" uid="uid://2wtlfc3gsur0" path="res://Resources/Script/power_up.gd" id="1_oo8hf"]
+[ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="2_mgvqq"]
 
 [resource]
 script = ExtResource("1_oo8hf")
+index = "attack_range"
 name = "Gun pratice"
 decription = "Increases your weapon range by"
-amount = 0.2
+amount = 10.0
+texture = ExtResource("2_mgvqq")
 metadata/_custom_type_script = "uid://2wtlfc3gsur0"

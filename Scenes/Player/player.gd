@@ -2,13 +2,14 @@ extends CharacterBody2D
 
 class_name Player
 
-@export_category("Start stats")
+@export_category("Stats")
+@export_group("Start stats")
 @export var start_speed : float
 @export var start_hp : float
 @export var start_attack_speed : float
 @export var start_attack_range : float
 
-@export_category("Max stats")
+@export_group("Max stats")
 @export var max_hp : float
 @export var max_speed : float
 @export var max_attack_speed : float
@@ -69,3 +70,6 @@ func get_bullet_direction() -> Vector2:
 		return Vector2.ZERO
 		
 	return (closes_enemy.global_position - global_position).normalized()
+
+func take_dmg(amount : float) ->void:
+	print("dmg taken ",amount)

@@ -7,11 +7,15 @@ class_name PowerUpCard
 @onready var title: Label = $MarginContainer/MarginContainer/VBoxContainer/Title
 @onready var description: Label = $MarginContainer/MarginContainer/VBoxContainer/Description
 @onready var button: Button = $MarginContainer/MarginContainer/VBoxContainer/Button
+@onready var texture_rect: TextureRect = $MarginContainer/MarginContainer/VBoxContainer/TextureRect
 
 
 func _ready() -> void:
 	button.text = "Select"
 	if power_up_data != null:
 		title.text = power_up_data.name
-		description.text = power_up_data.decription + str(power_up_data.decription)
-	
+		texture_rect.texture = power_up_data.texture
+		description.text = power_up_data.decription + str(power_up_data.amount) + " %"
+
+func _on_button_pressed() -> void:
+	PowerUpManager.add_powerup(power_up_data)

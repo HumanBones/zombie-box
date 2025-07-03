@@ -9,9 +9,7 @@
 collision_layer = 8
 collision_mask = 5
 script = ExtResource("1_qngn8")
-max_speed = 600.0
-max_dmg = 10.0
-life_time = 2.0
+default_life_time = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(2.6386, 2.397)

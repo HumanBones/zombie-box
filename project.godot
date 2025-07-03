@@ -18,6 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 SpawnManager="*res://Managers/spawn_manager.gd"
+PowerUpManager="*res://Managers/power_up_manager.gd"
+
+[display]
+
+window/stretch/mode="viewport"
 
 [global_group]
 
@@ -27,6 +32,7 @@ Enemy=""
 Bullets=""
 BulletHolder=""
 EnemyHolder=""
+PlayerUpgradeManager=""
 
 [input]
 

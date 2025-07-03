@@ -55,7 +55,7 @@ func get_random_spawn_point() -> Vector2:
 	var distance = randf() * spawn_range
 	spawn_point = Vector2(cos(angle), sin(angle)) * distance
 	
-	return spawn_point
+	return spawn_point + global_position
 
 func start_next_wave() ->void:
 	cur_enemy_count = 0
