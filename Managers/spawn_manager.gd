@@ -4,9 +4,10 @@ signal next_wave
 signal pick_upgrade
 signal finished_waves
 signal enemy_count_updated
+signal cur_wave(amount)
 
 var player : Player
-var wave_count : int = 3
+var wave_count : int = 1
 var enemies : Array[Zombie]
 var cur_wave_count : int
 
@@ -30,14 +31,13 @@ func remove_enemy(enemy : Zombie) ->void:
 			cur_wave_count += 1
 			pick_upgrade.emit()
 			pause_game()
-			print("wave_count")
-			print(cur_wave_count)
 		else:
 			finished_waves.emit()
 	
 
 func upgrade_picked() ->void:
 	resume_game()
+	cur_wave.emit(cur_wave_count)
 	next_wave.emit()
 
 func pause_game() ->void:
