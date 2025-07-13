@@ -16,8 +16,9 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(51.8686, -29.0633, -160
 
 [node name="Arena" parent="." instance=ExtResource("5_l1hd3")]
 
-[node name="Player" parent="." instance=ExtResource("1_t1gg8")]
+[node name="Player" parent="." node_paths=PackedStringArray("healthbar") instance=ExtResource("1_t1gg8")]
 position = Vector2(1585, 774)
+healthbar = NodePath("../CanvasLayer/HUD/MainContainer/BottomContainer/HealthBar")
 
 [node name="MainCam" parent="." instance=ExtResource("2_yp2ti")]
 follow_distance = 10.0
@@ -52,3 +53,5 @@ spawn_range = 500.0
 visible = false
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("6_adcqc")]
+
+[editable path="CanvasLayer/HUD"]

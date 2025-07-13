@@ -43,7 +43,7 @@ defualt_attack_speed = 1.0
 parent = NodePath("..")
 default_bullet_size = 1.0
 default_bullet_speed = 600.0
-defualt_bullet_dmg = 20.0
+defualt_bullet_dmg = 1.0
 
 [node name="PlayerUpgradeManager" type="Node2D" parent="." node_paths=PackedStringArray("player", "bullet_shooter") groups=["PlayerUpgradeManager"]]
 script = ExtResource("5_htcer")

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SpawnManager="*res://Managers/spawn_manager.gd"
 PowerUpManager="*res://Managers/power_up_manager.gd"
+GameStateManager="*res://Managers/game_state_manager.gd"
 
 [display]
 
