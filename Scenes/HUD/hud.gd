@@ -33,4 +33,4 @@ func waves_finished() ->void:
 
 func is_game_over() ->void:
 	game_over_label.show()
-	animation_player.play("game_over_blink")
+	animation_player.play("blink_label")
