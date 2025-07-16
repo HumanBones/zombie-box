@@ -21,7 +21,6 @@ func _ready() -> void:
 	SpawnManager.next_wave.connect(start_next_wave)
 
 func _process(delta: float) -> void:
-	
 	if !can_spawn:
 		timer.paused = true
 	else:
@@ -37,7 +36,6 @@ func spawn_enemy() ->void:
 	enemy_holder.add_child(enemy_instance)
 	cur_enemy_count += 1
 	SpawnManager.add_enemy(enemy_instance)
-	print("enemy_spawned")
 
 func remove_enemy_from_list(instance : Zombie) ->void:
 	if instance in SpawnManager.enemies:
@@ -60,7 +58,6 @@ func get_random_spawn_point() -> Vector2:
 func start_next_wave() ->void:
 	cur_enemy_count = 0
 	can_spawn = true
-
 
 func _on_timer_timeout() -> void:
 	spawn_enemy()

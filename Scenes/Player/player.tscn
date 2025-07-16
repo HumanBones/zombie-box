@@ -39,11 +39,11 @@ scale = Vector2(5.96, 5.92)
 shape = SubResource("RectangleShape2D_xpcdj")
 
 [node name="BulletShooter" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("4_mtuoh")]
-defualt_attack_speed = 1.0
+max_attack_speed = 100.0
 parent = NodePath("..")
-default_bullet_size = 1.0
-default_bullet_speed = 600.0
-defualt_bullet_dmg = 1.0
+max_bullet_size = 1.0
+max_bullet_speed = 500.0
+max_bullet_dmg = 10.0
 
 [node name="PlayerUpgradeManager" type="Node2D" parent="." node_paths=PackedStringArray("player", "bullet_shooter") groups=["PlayerUpgradeManager"]]
 script = ExtResource("5_htcer")

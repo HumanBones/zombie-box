@@ -9,7 +9,6 @@ class_name PowerUpCard
 @onready var button: Button = $MarginContainer/MarginContainer/VBoxContainer/Button
 @onready var texture_rect: TextureRect = $MarginContainer/MarginContainer/VBoxContainer/TextureRect
 
-
 func _ready() -> void:
 	button.text = "Select"
 	if power_up_data != null:

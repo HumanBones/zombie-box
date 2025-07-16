@@ -40,8 +40,8 @@ shape = SubResource("RectangleShape2D_yk0r7")
 
 [node name="AttackManager" type="Node2D" parent="."]
 script = ExtResource("4_8d8mn")
-default_attack_speed = 1.0
-default_attack_dmg = 10.0
+max_attack_speed = 1.0
+max_attack_dmg = 5.0
 
 [node name="Timer" type="Timer" parent="AttackManager"]
 one_shot = true

@@ -11,8 +11,7 @@ var power_up_card_array : Array[PowerUpCard]
 func _ready() -> void:
 	SpawnManager.pick_upgrade.connect(show_upgrade)
 	PowerUpManager.powerup_used.connect(hide_upgrade)
-	
-	
+
 func show_upgrade() ->void:
 	self.visible = true
 	pick_card_upgrade()
@@ -20,7 +19,6 @@ func show_upgrade() ->void:
 func hide_upgrade() ->void:
 	self.visible = false
 	remove_power_up_cards()
-
 
 func pick_card_upgrade() ->void:
 	var power_up_upgrade : PowerUp
@@ -30,14 +28,12 @@ func pick_card_upgrade() ->void:
 		power_up_upgrade = temp_array.pick_random()
 		temp_array.erase(power_up_upgrade)
 		add_powerup_card(power_up_upgrade)
-	
-	
+
 func add_powerup_card(power_res : PowerUp) ->void:
 	var power_up_card_scene_node = power_up_card_scene.instantiate() as MarginContainer
 	power_up_card_scene_node.power_up_data = power_res
 	card_container.call_deferred("add_child",power_up_card_scene_node)
 	power_up_card_array.append(power_up_card_scene_node)
-	
 
 func remove_power_up_cards() ->void:
 	if power_up_array.is_empty():

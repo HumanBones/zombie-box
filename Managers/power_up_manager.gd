@@ -45,6 +45,5 @@ func add_powerup(powerup:PowerUp) -> void:
 				power_up_list.append(powerup)
 				powerup_used.emit()
 
-
 func power_up_used() ->void:
 	print(power_up_list)

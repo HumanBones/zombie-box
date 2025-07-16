@@ -5,12 +5,12 @@ class_name BulletShooter
 signal bullet_spawned
 
 @export var bullet_scene : PackedScene
-@export var defualt_attack_speed : float
+@export var max_attack_speed : float
 @export var parent : Node2D
 
-@export var default_bullet_size : float
-@export var default_bullet_speed : float
-@export var defualt_bullet_dmg : float
+@export var max_bullet_size : float
+@export var max_bullet_speed : float
+@export var max_bullet_dmg : float
 
 @onready var timer: Timer = $Timer
 
@@ -22,13 +22,13 @@ var bullet_size : float
 var bullet_dmg : float
 
 func _ready() -> void:
-	bullet_speed = default_bullet_speed
-	bullet_size = default_bullet_size
-	bullet_dmg = defualt_bullet_dmg
+	bullet_speed = max_bullet_speed
+	bullet_size = max_bullet_size
+	bullet_dmg = max_bullet_dmg
 	
 	bullet_holder = get_tree().get_first_node_in_group("BulletHolder")
 	if attack_speed == null or 0:
-		attack_speed = defualt_attack_speed
+		attack_speed = max_attack_speed
 		timer.wait_time = attack_speed
 
 func set_shoot(can_shoot : bool) -> void:
@@ -50,12 +50,10 @@ func spawn_bullet() ->void:
 	bullet_instance.set_speed(bullet_speed)
 	bullet_holder.add_child(bullet_instance)
 	bullet_spawned.emit()
-	
 
 func set_attck_speed(attack_spd :float) ->void:
 	attack_speed = attack_spd
 	timer.wait_time = attack_speed
-
 
 func _on_timer_timeout() -> void:
 	spawn_bullet()

@@ -31,12 +31,10 @@ func _ready() -> void:
 	hp = start_hp
 	attack_range = start_attack_range
 	attack_speed = start_attack_speed
-	
 	healthbar_init()
 	bullet_shooter.set_attck_speed(attack_speed)
 
 func _physics_process(delta: float) -> void:
-	
 	get_input()
 	velocity = direction * speed
 	

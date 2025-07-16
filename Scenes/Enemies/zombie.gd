@@ -23,12 +23,11 @@ var target : Player
 func _ready() -> void:
 	if target == null:
 		target = get_tree().get_first_node_in_group("Player")
-	speed = max_speed
-	hp = max_hp
+	speed = max_speed * SpawnManager.cur_speed_scale
+	hp = max_hp * SpawnManager.cur_health_scale
 	health_bar.hide()
 	health_bar.set_max_value(max_hp)
 	health_bar.set_value(hp)
-	
 
 func _physics_process(delta: float) -> void:
 	
@@ -57,7 +56,6 @@ func take_dmg(dmg : float) ->void:
 
 func die() -> void:
 	call_deferred("queue_free")
-	
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Bullets"):
