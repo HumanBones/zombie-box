@@ -74,7 +74,7 @@ func get_bullet_direction() -> Vector2:
 	return (closes_enemy.global_position - global_position).normalized()
 
 func healthbar_init() ->void:
-	healthbar.set_min_value(0)
+	healthbar.set_min_value(0.0)
 	healthbar.set_max_value(max_hp)
 	
 func take_dmg(amount : float) ->void:

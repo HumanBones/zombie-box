@@ -10,6 +10,8 @@ signal died
 @export var max_hp : float
 @export var attack_range : float
 
+@export var blood_fx_scene : PackedScene
+
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var attack_manager: EnemyAttackManager = $AttackManager
 @onready var health_bar: HealthBar = $HealthBar
@@ -26,7 +28,7 @@ func _ready() -> void:
 	speed = max_speed * SpawnManager.cur_speed_scale
 	hp = max_hp * SpawnManager.cur_health_scale
 	health_bar.hide()
-	health_bar.set_max_value(max_hp)
+	health_bar.set_max_value(hp)
 	health_bar.set_value(hp)
 
 func _physics_process(delta: float) -> void:
@@ -55,9 +57,15 @@ func take_dmg(dmg : float) ->void:
 		die()
 
 func die() -> void:
+	spawn_blood_fx()
 	call_deferred("queue_free")
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Bullets"):
 		take_dmg(area.get_dmg())
 		area.die()
+
+func spawn_blood_fx() ->void:
+	var blood_fx = blood_fx_scene.instantiate() as BloodSplatterParticle
+	blood_fx.global_position = self.global_position
+	get_parent().add_child(blood_fx)

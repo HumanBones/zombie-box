@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://chbj5tjhlx41d"]
+[gd_scene load_steps=10 format=3 uid="uid://chbj5tjhlx41d"]
 
 [ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="1_673kn"]
 [ext_resource type="Script" uid="uid://cr4d3nx2d3xgw" path="res://Scenes/Enemies/zombie.gd" id="1_yk0r7"]
+[ext_resource type="PackedScene" uid="uid://e7pfcrhvbxhi" path="res://Scenes/VFX/BloodSplatter/blood_splatter_particle.tscn" id="2_jhkch"]
 [ext_resource type="PackedScene" uid="uid://xn55x5wbcwvx" path="res://Scenes/Collision/hitbox.tscn" id="2_ttf1p"]
 [ext_resource type="Script" uid="uid://dlayxy0phuihq" path="res://Scenes/Enemies/attack_manager.gd" id="4_8d8mn"]
 [ext_resource type="PackedScene" uid="uid://cdytee8i1eyp0" path="res://Scenes/HealthBarUI/health_bar.tscn" id="5_o6bce"]
@@ -19,6 +20,7 @@ script = ExtResource("1_yk0r7")
 max_speed = 50.0
 max_hp = 100.0
 attack_range = 130.0
+blood_fx_scene = ExtResource("2_jhkch")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
