@@ -22,6 +22,8 @@ func set_speed(amount : float) ->void:
 func set_hp(amount : float) ->void:
 	player.hp += player.max_hp * amount
 	player.max_hp += player.max_hp * amount
+	player.healthbar.set_max_value(player.max_hp)
+	player.healthbar.update_min_max_value()
 	player.healthbar.set_value(player.hp)
 	upgraded.emit()
 

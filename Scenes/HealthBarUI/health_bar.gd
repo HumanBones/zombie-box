@@ -13,8 +13,7 @@ var cur_value : float
 
 func _ready() -> void:
 	progress_bar.value = max_value
-	progress_bar.max_value = max_value
-	progress_bar.min_value = min_value
+	update_min_max_value()
 	
 func set_min_value(amount : float) ->void:
 	min_value = amount
@@ -29,3 +28,7 @@ func set_value(amount : float) -> void:
 func update_ui(amount : float) ->void:
 	progress_bar.value = amount
 	update_prog_bar_ui.emit()
+
+func update_min_max_value() ->void:
+	progress_bar.max_value = max_value
+	progress_bar.min_value = min_value

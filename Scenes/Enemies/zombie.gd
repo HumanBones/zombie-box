@@ -26,10 +26,17 @@ func _ready() -> void:
 	if target == null:
 		target = get_tree().get_first_node_in_group("Player")
 	speed = max_speed * SpawnManager.cur_speed_scale
-	hp = max_hp * SpawnManager.cur_health_scale
-	health_bar.hide()
-	health_bar.set_max_value(hp)
+	init_healthbar()
+
+
+func init_healthbar() ->void:
+	max_hp = max_hp * SpawnManager.cur_health_scale
+	hp = max_hp
+	health_bar.set_max_value(max_hp)
 	health_bar.set_value(hp)
+	health_bar.update_min_max_value()
+	health_bar.hide()
+	
 
 func _physics_process(delta: float) -> void:
 	
