@@ -12,6 +12,7 @@ signal died
 
 @export var blood_fx_scene : PackedScene
 
+@onready var blood_hit: CPUParticles2D = $BloodHit
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var attack_manager: EnemyAttackManager = $AttackManager
 @onready var health_bar: HealthBar = $HealthBar
@@ -69,8 +70,17 @@ func die() -> void:
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Bullets"):
+		show_hit_effect(area.global_position, -area.direction.normalized())
 		take_dmg(area.get_dmg())
 		area.die()
+
+func show_hit_effect(pos : Vector2, dir: Vector2) ->void:
+	blood_hit.global_position = pos
+	blood_hit.rotation = dir.angle()
+	blood_hit.show()
+	blood_hit.emitting = true
+	
+	CameraShakeManager.bullet_hit_shake()
 
 func spawn_blood_fx() ->void:
 	var blood_fx = blood_fx_scene.instantiate() as BloodSplatterParticle

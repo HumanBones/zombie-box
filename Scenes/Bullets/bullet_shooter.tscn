@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6vlx7rixjkjy"]
+[gd_scene load_steps=4 format=3 uid="uid://c6vlx7rixjkjy"]
 
 [ext_resource type="Script" uid="uid://c7v5fux5enlwk" path="res://Scenes/Bullets/bullet_shooter.gd" id="1_ruwyb"]
 [ext_resource type="PackedScene" uid="uid://dya3dypewkuaw" path="res://Scenes/Bullets/bullet.tscn" id="2_ebucs"]
+[ext_resource type="Texture2D" uid="uid://cp5pi23lu5p1c" path="res://Assets/Light/prop_fade_start_50.png" id="3_3ecrt"]
 
 [node name="BulletShooter" type="Node2D"]
 script = ExtResource("1_ruwyb")
@@ -10,4 +11,16 @@ bullet_scene = ExtResource("2_ebucs")
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(-44, -1)
+texture = ExtResource("3_3ecrt")
+offset = Vector2(137, 3)
+texture_scale = 1.5
+
+[node name="LightTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="LightTimer" to="." method="_on_light_timer_timeout"]

@@ -12,7 +12,11 @@ signal bullet_spawned
 @export var max_bullet_speed : float
 @export var max_bullet_dmg : float
 
+@export var gun_point : Marker2D
+
 @onready var timer: Timer = $Timer
+@onready var point_light_2d: PointLight2D = $PointLight2D
+@onready var light_timer: Timer = $LightTimer
 
 var bullet_holder : Node2D
 var attack_speed : float
@@ -25,6 +29,9 @@ func _ready() -> void:
 	bullet_speed = max_bullet_speed
 	bullet_size = max_bullet_size
 	bullet_dmg = max_bullet_dmg
+	
+	if gun_point != null:
+		point_light_2d.global_position = gun_point.global_position
 	
 	bullet_holder = get_tree().get_first_node_in_group("BulletHolder")
 	if attack_speed == null or 0:
@@ -50,6 +57,11 @@ func spawn_bullet() ->void:
 	bullet_instance.set_speed(bullet_speed)
 	bullet_holder.add_child(bullet_instance)
 	bullet_spawned.emit()
+	
+	#CameraShakeManager.bullet_shot_shake()
+	
+	point_light_2d.rotation = bullet_direction.angle()
+	show_flash()
 
 func set_attck_speed(attack_spd :float) ->void:
 	attack_speed = attack_spd
@@ -57,3 +69,11 @@ func set_attck_speed(attack_spd :float) ->void:
 
 func _on_timer_timeout() -> void:
 	spawn_bullet()
+
+func show_flash() ->void:
+	point_light_2d.show()
+	light_timer.start()
+	
+
+func _on_light_timer_timeout() -> void:
+	point_light_2d.hide()

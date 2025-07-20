@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://djsjompwrap8t"]
+[gd_scene load_steps=10 format=3 uid="uid://djsjompwrap8t"]
 
 [ext_resource type="Script" uid="uid://dbguo6y7xf2te" path="res://Scenes/HUD/hud.gd" id="1_5aai8"]
 [ext_resource type="FontFile" uid="uid://4stmtwwrtt5u" path="res://Assets/Fonts/Pixellari.ttf" id="1_33i1w"]
 [ext_resource type="PackedScene" uid="uid://cdytee8i1eyp0" path="res://Scenes/HealthBarUI/health_bar.tscn" id="3_a56j6"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_a56j6"]
 
 [sub_resource type="Animation" id="Animation_a56j6"]
 length = 0.001
@@ -41,6 +43,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [64]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BloodEffect:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0.439216)]
 }
 
 [sub_resource type="Animation" id="Animation_k83ni"]
@@ -101,10 +115,27 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_6pkbx"]
+resource_name = "blood_fade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodEffect:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.495369),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0.439216), Color(1, 0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a56j6"]
 _data = {
 &"RESET": SubResource("Animation_a56j6"),
 &"blink_label": SubResource("Animation_k83ni"),
+&"blood_fade": SubResource("Animation_6pkbx"),
 &"fade_label": SubResource("Animation_5aai8")
 }
 
@@ -117,6 +148,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_5aai8")
+
+[node name="BloodEffect" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 0, 0, 0.439216)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_a56j6")
 
 [node name="MainContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -158,7 +200,7 @@ custom_minimum_size = Vector2(165, 0)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/margin_right = 165
-theme_override_constants/margin_bottom = 100
+theme_override_constants/margin_bottom = 80
 
 [node name="HealthBar" parent="MainContainer/BottomContainer" instance=ExtResource("3_a56j6")]
 layout_mode = 2

@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Player
 
+signal player_hit
+
 @export_category("Stats")
 @export_group("Start stats")
 @export var start_speed : float
@@ -79,12 +81,17 @@ func healthbar_init() ->void:
 	
 func take_dmg(amount : float) ->void:
 	hp -= amount
+	player_hit.emit()
 	if hp <= 0:
 		die()
 	healthbar.set_value(hp)
+	player_hit_fx()
 
 func die() ->void:
 	GameStateManager.set_game_over()
 	print("you died")
 	set_physics_process(false)
 	bullet_shooter.set_shoot(false)
+
+func player_hit_fx() ->void:
+	CameraShakeManager.player_hit_shake()

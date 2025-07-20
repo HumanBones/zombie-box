@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dya3dypewkuaw"]
+[gd_scene load_steps=5 format=3 uid="uid://dya3dypewkuaw"]
 
 [ext_resource type="Script" uid="uid://t20qw2bxvgj5" path="res://Scenes/Bullets/bullet.gd" id="1_qngn8"]
 [ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="1_tcy0y"]
+[ext_resource type="Texture2D" uid="uid://xvxty5lmbepb" path="res://Assets/Light/2d_lights_and_shadows_neutral_point_light.webp" id="3_510l0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tcy0y"]
 
@@ -25,6 +26,10 @@ texture = ExtResource("1_tcy0y")
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("3_510l0")
+texture_scale = 0.5
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

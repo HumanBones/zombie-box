@@ -38,14 +38,17 @@ collision_mask = 5
 scale = Vector2(5.96, 5.92)
 shape = SubResource("RectangleShape2D_xpcdj")
 
-[node name="BulletShooter" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("4_mtuoh")]
+[node name="BulletShooter" parent="." node_paths=PackedStringArray("parent", "gun_point") instance=ExtResource("4_mtuoh")]
 max_attack_speed = 100.0
 parent = NodePath("..")
 max_bullet_size = 1.0
 max_bullet_speed = 500.0
 max_bullet_dmg = 10.0
+gun_point = NodePath("../GunPoint")
 
 [node name="PlayerUpgradeManager" type="Node2D" parent="." node_paths=PackedStringArray("player", "bullet_shooter") groups=["PlayerUpgradeManager"]]
 script = ExtResource("5_htcer")
 player = NodePath("..")
 bullet_shooter = NodePath("../BulletShooter")
+
+[node name="GunPoint" type="Marker2D" parent="."]

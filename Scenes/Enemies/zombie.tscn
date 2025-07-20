@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://chbj5tjhlx41d"]
+[gd_scene load_steps=11 format=3 uid="uid://chbj5tjhlx41d"]
 
 [ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="1_673kn"]
 [ext_resource type="Script" uid="uid://cr4d3nx2d3xgw" path="res://Scenes/Enemies/zombie.gd" id="1_yk0r7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://xn55x5wbcwvx" path="res://Scenes/Collision/hitbox.tscn" id="2_ttf1p"]
 [ext_resource type="Script" uid="uid://dlayxy0phuihq" path="res://Scenes/Enemies/attack_manager.gd" id="4_8d8mn"]
 [ext_resource type="PackedScene" uid="uid://cdytee8i1eyp0" path="res://Scenes/HealthBarUI/health_bar.tscn" id="5_o6bce"]
+[ext_resource type="PackedScene" uid="uid://bijrhjabjm0si" path="res://Scenes/VFX/BloodSplatter/blood_hit.tscn" id="7_3p0w2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttf1p"]
 
@@ -23,7 +24,7 @@ attack_range = 130.0
 blood_fx_scene = ExtResource("2_jhkch")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
+modulate = Color(0.141454, 0.63776, 0.284094, 1)
 texture = ExtResource("1_673kn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -60,6 +61,10 @@ offset_left = -78.0
 offset_top = -115.0
 offset_right = -78.0
 offset_bottom = -115.0
+
+[node name="BloodHit" parent="." instance=ExtResource("7_3p0w2")]
+visible = false
+scale = Vector2(3, 3)
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="AttackManager/Timer" to="AttackManager" method="_on_timer_timeout"]

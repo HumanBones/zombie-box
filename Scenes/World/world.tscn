@@ -22,6 +22,8 @@ healthbar = NodePath("../CanvasLayer/HUD/MainContainer/BottomContainer/HealthBar
 
 [node name="MainCam" parent="." instance=ExtResource("2_yp2ti")]
 follow_distance = 10.0
+shake_amount = 8.0
+shake_decay = 8.0
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 scale = Vector2(-0.199045, -0.733226)
@@ -49,9 +51,11 @@ spawn_range = 500.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("6_adcqc")]
+
 [node name="PowerUp" parent="CanvasLayer" instance=ExtResource("4_l1hd3")]
 visible = false
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource("6_adcqc")]
+[connection signal="player_hit" from="Player" to="CanvasLayer/HUD" method="_on_player_player_hit"]
 
 [editable path="CanvasLayer/HUD"]
