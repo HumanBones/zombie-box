@@ -21,6 +21,7 @@ SpawnManager="*res://Managers/spawn_manager.gd"
 PowerUpManager="*res://Managers/power_up_manager.gd"
 GameStateManager="*res://Managers/game_state_manager.gd"
 CameraShakeManager="*res://Managers/camera_shake_manager.gd"
+SceneManager="*res://Managers/scene_manager.gd"
 
 [display]
 

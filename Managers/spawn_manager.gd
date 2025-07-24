@@ -53,7 +53,7 @@ func upgrade_picked() ->void:
 	next_wave.emit()
 
 func pause_game() ->void:
-	player.set_physics_process(false)
+	player.call_deferred("set_physics_process", false)
 	
 func resume_game() ->void:
 	player.set_physics_process(true)

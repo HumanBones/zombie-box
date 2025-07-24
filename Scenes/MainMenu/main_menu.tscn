@@ -1,0 +1,201 @@
+[gd_scene load_steps=13 format=3 uid="uid://bmt68q3frn78x"]
+
+[ext_resource type="FontFile" uid="uid://c4ebmnin7ypsx" path="res://Scenes/MainMenu/main_menu_font.tres" id="1_uqdog"]
+[ext_resource type="Script" uid="uid://7exkqi0lplh0" path="res://Scenes/MainMenu/main_menu.gd" id="1_v763k"]
+
+[sub_resource type="Gradient" id="Gradient_v763k"]
+colors = PackedColorArray(0, 0.290196, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qgdf6"]
+gradient = SubResource("Gradient_v763k")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v763k"]
+bg_color = Color(0.357191, 0.357191, 0.357191, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qgdf6"]
+bg_color = Color(0.308769, 0.308769, 0.308769, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qgbs"]
+bg_color = Color(0.295867, 0.295867, 0.295866, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_adu2g"]
+bg_color = Color(0.321728, 0.321728, 0.321728, 1)
+
+[sub_resource type="Animation" id="Animation_v763k"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainContainer/CentralContainer/VBoxContainer/Start:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(3.03143, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainContainer/CentralContainer/VBoxContainer/Exit:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(3.03143, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qgdf6"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(7.46426, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.427451)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hide_background"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_0qgbs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainContainer/CentralContainer/VBoxContainer/Start:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainContainer/CentralContainer/VBoxContainer/Exit:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_adu2g"]
+_data = {
+&"RESET": SubResource("Animation_0qgbs"),
+&"fade_in": SubResource("Animation_v763k"),
+&"fade_out": SubResource("Animation_qgdf6")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v763k")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 723.0
+offset_top = 531.0
+offset_right = 723.0
+offset_bottom = 531.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+scale = Vector2(1, 2)
+pivot_offset = Vector2(675.399, -90.8263)
+texture = SubResource("GradientTexture1D_qgdf6")
+
+[node name="MainContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="CentralContainer" type="MarginContainer" parent="MainContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/CentralContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Start" type="Button" parent="MainContainer/CentralContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_uqdog")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxFlat_v763k")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_qgdf6")
+text = "Start"
+icon_alignment = 1
+expand_icon = true
+
+[node name="Exit" type="Button" parent="MainContainer/CentralContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_uqdog")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxFlat_0qgbs")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_adu2g")
+text = "Exit
+"
+icon_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_adu2g")
+}
+
+[connection signal="pressed" from="MainContainer/CentralContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MainContainer/CentralContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
