@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bna856vlssqy5"]
+[gd_scene format=3 uid="uid://bna856vlssqy5"]
 
 [ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="1_uvnfx"]
 [ext_resource type="Script" uid="uid://decjw8vspw5e3" path="res://Scenes/Player/player.gd" id="1_xpcdj"]
@@ -10,7 +10,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xpcdj"]
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=2057231058 groups=["Player"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_xpcdj")
@@ -23,32 +23,32 @@ max_speed = 400.0
 max_attack_speed = 3.0
 max_attack_range = 200.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1605534476]
 scale = Vector2(4.52, 2.48)
 shape = SubResource("RectangleShape2D_a3d8c")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=602325907]
 texture = ExtResource("1_uvnfx")
 
-[node name="Hitbox" parent="." instance=ExtResource("2_a3d8c")]
+[node name="Hitbox" parent="." unique_id=109896063 instance=ExtResource("2_a3d8c")]
 collision_layer = 2
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=98686334]
 scale = Vector2(5.96, 5.92)
 shape = SubResource("RectangleShape2D_xpcdj")
 
-[node name="BulletShooter" parent="." node_paths=PackedStringArray("parent", "gun_point") instance=ExtResource("4_mtuoh")]
-max_attack_speed = 100.0
+[node name="BulletShooter" parent="." unique_id=1792268156 node_paths=PackedStringArray("parent", "gun_point") instance=ExtResource("4_mtuoh")]
 parent = NodePath("..")
-max_bullet_size = 1.0
-max_bullet_speed = 500.0
-max_bullet_dmg = 10.0
+start_attack_speed = 1.0
+start_bullet_size = 1.0
+start_bullet_speed = 500.0
+start_bullet_dmg = 10.0
 gun_point = NodePath("../GunPoint")
 
-[node name="PlayerUpgradeManager" type="Node2D" parent="." node_paths=PackedStringArray("player", "bullet_shooter") groups=["PlayerUpgradeManager"]]
+[node name="PlayerUpgradeManager" type="Node2D" parent="." unique_id=563468371 node_paths=PackedStringArray("player", "bullet_shooter") groups=["PlayerUpgradeManager"]]
 script = ExtResource("5_htcer")
 player = NodePath("..")
 bullet_shooter = NodePath("../BulletShooter")
 
-[node name="GunPoint" type="Marker2D" parent="."]
+[node name="GunPoint" type="Marker2D" parent="." unique_id=272919056]

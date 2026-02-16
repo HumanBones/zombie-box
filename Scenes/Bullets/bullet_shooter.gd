@@ -5,12 +5,13 @@ class_name BulletShooter
 signal bullet_spawned
 
 @export var bullet_scene : PackedScene
-@export var max_attack_speed : float
 @export var parent : Node2D
 
-@export var max_bullet_size : float
-@export var max_bullet_speed : float
-@export var max_bullet_dmg : float
+@export_group("Start stats")
+@export var start_attack_speed : float
+@export var start_bullet_size : float
+@export var start_bullet_speed : float
+@export var start_bullet_dmg : float
 
 @export var gun_point : Marker2D
 
@@ -26,16 +27,16 @@ var bullet_size : float
 var bullet_dmg : float
 
 func _ready() -> void:
-	bullet_speed = max_bullet_speed
-	bullet_size = max_bullet_size
-	bullet_dmg = max_bullet_dmg
+	bullet_speed = start_bullet_speed
+	bullet_size = start_bullet_size
+	bullet_dmg = start_bullet_dmg
 	
 	if gun_point != null:
 		point_light_2d.global_position = gun_point.global_position
 	
 	bullet_holder = get_tree().get_first_node_in_group("BulletHolder")
 	if attack_speed == null or 0:
-		attack_speed = max_attack_speed
+		attack_speed = start_attack_speed
 		timer.wait_time = attack_speed
 
 func set_shoot(can_shoot : bool) -> void:

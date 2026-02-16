@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b31h7wt7jmplu"]
+[gd_scene format=3 uid="uid://b31h7wt7jmplu"]
 
 [ext_resource type="PackedScene" uid="uid://bna856vlssqy5" path="res://Scenes/Player/player.tscn" id="1_t1gg8"]
 [ext_resource type="PackedScene" uid="uid://gefh7u00jr3d" path="res://Scenes/Camera/main_cam.tscn" id="2_yp2ti"]
@@ -12,48 +12,48 @@ vertices = PackedVector2Array(41.3828, -39.0312, -15991.8, -6.78125, -16056, -21
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(51.8686, -29.0633, -16001.5, 3.22925, -16066.3, -2208.81, -51.8686, -2228.19)])
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" unique_id=1839586354]
 
-[node name="Arena" parent="." instance=ExtResource("5_l1hd3")]
+[node name="Arena" parent="." unique_id=1223546908 instance=ExtResource("5_l1hd3")]
 
-[node name="Player" parent="." node_paths=PackedStringArray("healthbar") instance=ExtResource("1_t1gg8")]
+[node name="Player" parent="." unique_id=1370965243 node_paths=PackedStringArray("healthbar") instance=ExtResource("1_t1gg8")]
 position = Vector2(1585, 774)
 healthbar = NodePath("../CanvasLayer/HUD/MainContainer/BottomContainer/HealthBar")
 
-[node name="MainCam" parent="." instance=ExtResource("2_yp2ti")]
+[node name="MainCam" parent="." unique_id=267606830 instance=ExtResource("2_yp2ti")]
 follow_distance = 10.0
 shake_amount = 8.0
 shake_decay = 8.0
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1396607627]
 scale = Vector2(-0.199045, -0.733226)
 navigation_polygon = SubResource("NavigationPolygon_yp2ti")
 
-[node name="BulletHolder" type="Node2D" parent="." groups=["BulletHolder"]]
+[node name="BulletHolder" type="Node2D" parent="." unique_id=1455053524 groups=["BulletHolder"]]
 
-[node name="EnemyHolder" type="Node2D" parent="." groups=["EnemyHolder"]]
+[node name="EnemyHolder" type="Node2D" parent="." unique_id=1677656639 groups=["EnemyHolder"]]
 
-[node name="Enemy_spawner" parent="." instance=ExtResource("4_vadfg")]
+[node name="Enemy_spawner" parent="." unique_id=229108464 instance=ExtResource("4_vadfg")]
 position = Vector2(2837, 127)
 spawn_range = 500.0
 
-[node name="Enemy_spawner2" parent="." instance=ExtResource("4_vadfg")]
+[node name="Enemy_spawner2" parent="." unique_id=1764805633 instance=ExtResource("4_vadfg")]
 position = Vector2(291, 1237)
 spawn_range = 500.0
 
-[node name="Enemy_spawner3" parent="." instance=ExtResource("4_vadfg")]
+[node name="Enemy_spawner3" parent="." unique_id=1520546491 instance=ExtResource("4_vadfg")]
 position = Vector2(2692, 1200)
 spawn_range = 500.0
 
-[node name="Enemy_spawner4" parent="." instance=ExtResource("4_vadfg")]
+[node name="Enemy_spawner4" parent="." unique_id=1695449064 instance=ExtResource("4_vadfg")]
 position = Vector2(349, 362)
 spawn_range = 500.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1655367428]
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource("6_adcqc")]
+[node name="HUD" parent="CanvasLayer" unique_id=387080661 instance=ExtResource("6_adcqc")]
 
-[node name="PowerUp" parent="CanvasLayer" instance=ExtResource("4_l1hd3")]
+[node name="PowerUp" parent="CanvasLayer" unique_id=944388874 instance=ExtResource("4_l1hd3")]
 visible = false
 
 [connection signal="player_hit" from="Player" to="CanvasLayer/HUD" method="_on_player_player_hit"]
