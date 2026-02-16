@@ -13,6 +13,12 @@ signal bullet_spawned
 @export var start_bullet_speed : float
 @export var start_bullet_dmg : float
 
+@export_group("Max stats")
+@export var max_attack_speed : float
+@export var max_bullet_size : float
+@export var max_bullet_speed : float
+@export var max_bullet_dmg : float
+
 @export var gun_point : Marker2D
 
 @onready var timer: Timer = $Timer
@@ -30,14 +36,14 @@ func _ready() -> void:
 	bullet_speed = start_bullet_speed
 	bullet_size = start_bullet_size
 	bullet_dmg = start_bullet_dmg
+	attack_speed = start_attack_speed
+	timer.wait_time = attack_speed
 	
 	if gun_point != null:
 		point_light_2d.global_position = gun_point.global_position
 	
 	bullet_holder = get_tree().get_first_node_in_group("BulletHolder")
-	if attack_speed == null or 0:
-		attack_speed = start_attack_speed
-		timer.wait_time = attack_speed
+
 
 func set_shoot(can_shoot : bool) -> void:
 	if can_shoot:
@@ -66,6 +72,7 @@ func spawn_bullet() ->void:
 
 func set_attck_speed(attack_spd :float) ->void:
 	attack_speed = attack_spd
+	attack_speed = clamp(attack_spd,start_attack_speed,max_attack_speed)
 	timer.wait_time = attack_speed
 
 func _on_timer_timeout() -> void:

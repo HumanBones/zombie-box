@@ -8,13 +8,11 @@ signal player_hit
 @export_group("Start stats")
 @export var start_speed : float
 @export var start_hp : float
-@export var start_attack_speed : float
 @export var start_attack_range : float
 
 @export_group("Max stats")
 @export var max_hp : float
 @export var max_speed : float
-@export var max_attack_speed : float
 @export var max_attack_range : float
 
 @export_group("HealthBar")
@@ -32,9 +30,7 @@ func _ready() -> void:
 	speed = start_speed
 	hp = start_hp
 	attack_range = start_attack_range
-	attack_speed = start_attack_speed
 	healthbar_init()
-	bullet_shooter.set_attck_speed(attack_speed)
 
 func _physics_process(delta: float) -> void:
 	get_input()

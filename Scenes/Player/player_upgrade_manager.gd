@@ -8,7 +8,7 @@ class_name PlayerUpgradeManager
 signal upgraded(stat: String, amount : float)
 
 func set_attack_speed(amount : float) ->void:
-	player.attack_speed += player.attack_speed * amount
+	bullet_shooter.attack_speed += bullet_shooter.attack_speed * amount
 	upgraded.emit()
 	
 func set_attack_range(amount : float) ->void:

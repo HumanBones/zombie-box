@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://chbj5tjhlx41d"]
+[gd_scene format=3 uid="uid://chbj5tjhlx41d"]
 
 [ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="1_673kn"]
 [ext_resource type="Script" uid="uid://cr4d3nx2d3xgw" path="res://Scenes/Enemies/zombie.gd" id="1_yk0r7"]
@@ -15,7 +15,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_8d8mn"]
 radius = 96.1873
 
-[node name="Zombie" type="CharacterBody2D" groups=["Enemy"]]
+[node name="Zombie" type="CharacterBody2D" unique_id=1385674436 groups=["Enemy"]]
 collision_layer = 4
 script = ExtResource("1_yk0r7")
 max_speed = 50.0
@@ -23,46 +23,46 @@ max_hp = 100.0
 attack_range = 130.0
 blood_fx_scene = ExtResource("2_jhkch")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1952562771]
 modulate = Color(0.141454, 0.63776, 0.284094, 1)
 texture = ExtResource("1_673kn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=491717803]
 scale = Vector2(4.52, 5)
 shape = SubResource("RectangleShape2D_ttf1p")
 
-[node name="Hitbox" parent="." instance=ExtResource("2_ttf1p")]
+[node name="Hitbox" parent="." unique_id=623909717 instance=ExtResource("2_ttf1p")]
 collision_layer = 4
 collision_mask = 9
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1511555438]
 scale = Vector2(6.49909, 6.27396)
 shape = SubResource("RectangleShape2D_yk0r7")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=866971557]
 
-[node name="AttackManager" type="Node2D" parent="."]
+[node name="AttackManager" type="Node2D" parent="." unique_id=1115878904]
 script = ExtResource("4_8d8mn")
 max_attack_speed = 1.0
 max_attack_dmg = 5.0
 
-[node name="Timer" type="Timer" parent="AttackManager"]
+[node name="Timer" type="Timer" parent="AttackManager" unique_id=1595844448]
 one_shot = true
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=437399493]
 collision_layer = 5
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1360996007]
 shape = SubResource("CircleShape2D_8d8mn")
 
-[node name="HealthBar" parent="." instance=ExtResource("5_o6bce")]
+[node name="HealthBar" parent="." unique_id=494108094 instance=ExtResource("5_o6bce")]
 offset_left = -78.0
 offset_top = -115.0
 offset_right = -78.0
 offset_bottom = -115.0
 
-[node name="BloodHit" parent="." instance=ExtResource("7_3p0w2")]
+[node name="BloodHit" parent="." unique_id=1895818578 instance=ExtResource("7_3p0w2")]
 visible = false
 scale = Vector2(3, 3)
 

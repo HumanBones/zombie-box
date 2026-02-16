@@ -16,11 +16,9 @@ collision_mask = 5
 script = ExtResource("1_xpcdj")
 start_speed = 300.0
 start_hp = 100.0
-start_attack_speed = 0.4
 start_attack_range = 500.0
 max_hp = 100.0
 max_speed = 400.0
-max_attack_speed = 3.0
 max_attack_range = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1605534476]
@@ -40,10 +38,14 @@ shape = SubResource("RectangleShape2D_xpcdj")
 
 [node name="BulletShooter" parent="." unique_id=1792268156 node_paths=PackedStringArray("parent", "gun_point") instance=ExtResource("4_mtuoh")]
 parent = NodePath("..")
-start_attack_speed = 1.0
+start_attack_speed = 0.5
 start_bullet_size = 1.0
 start_bullet_speed = 500.0
 start_bullet_dmg = 10.0
+max_attack_speed = 0.1
+max_bullet_size = 2.0
+max_bullet_speed = 2000.0
+max_bullet_dmg = 100.0
 gun_point = NodePath("../GunPoint")
 
 [node name="PlayerUpgradeManager" type="Node2D" parent="." unique_id=563468371 node_paths=PackedStringArray("player", "bullet_shooter") groups=["PlayerUpgradeManager"]]
