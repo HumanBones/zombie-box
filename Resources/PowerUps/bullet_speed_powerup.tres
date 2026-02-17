@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BulletSpeedPowerUp" format=3 uid="uid://c8jt6j3s1ur1e"]
+
+[ext_resource type="Script" uid="uid://b2xkr103m5x4q" path="res://Resources/PowerUps/PowerUpScripts/powerup_bullet_speed.gd" id="1_g6c7e"]
+[ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="2_jev1s"]
+
+[resource]
+script = ExtResource("1_g6c7e")
+index = 6
+name = "Fast Bullet"
+decription = "Increases your bullet speed by"
+amount = 10.0
+texture = ExtResource("2_jev1s")
+metadata/_custom_type_script = "uid://b2xkr103m5x4q"

@@ -1,12 +1,12 @@
 extends Control
 
-@export var power_up_card_scene : PackedScene
-@export var power_up_array : Array[PowerUp]
+@export var power_up_card_scene: PackedScene
+@export var power_up_array: Array[PowerUp]
 @export var amount_of_upgrades = 3
 
-@onready var card_container : HBoxContainer = $MarginContainer/HBoxContainer
+@onready var card_container: HBoxContainer = $MarginContainer/HBoxContainer
 
-var power_up_card_array : Array[PowerUpCard]
+var power_up_card_array: Array[PowerUpCard]
 
 func _ready() -> void:
 	SpawnManager.pick_upgrade.connect(show_upgrade)
@@ -16,7 +16,7 @@ func show_upgrade() ->void:
 	self.visible = true
 	pick_card_upgrade()
 
-func hide_upgrade() ->void:
+func hide_upgrade(powerup: PowerUp) ->void:
 	self.visible = false
 	remove_power_up_cards()
 
@@ -29,7 +29,7 @@ func pick_card_upgrade() ->void:
 		temp_array.erase(power_up_upgrade)
 		add_powerup_card(power_up_upgrade)
 
-func add_powerup_card(power_res : PowerUp) ->void:
+func add_powerup_card(power_res: PowerUp) ->void:
 	var power_up_card_scene_node = power_up_card_scene.instantiate() as MarginContainer
 	power_up_card_scene_node.power_up_data = power_res
 	card_container.call_deferred("add_child",power_up_card_scene_node)

@@ -6,29 +6,30 @@ signal died
 
 @export_category("Stats")
 @export_group("Max Stats")
-@export var max_speed : float
-@export var max_hp : float
-@export var attack_range : float
+@export var max_speed: float
+@export var max_hp: float
+@export var attack_range: float
 
-@export var blood_fx_scene : PackedScene
+@export var blood_fx_scene: PackedScene
 
 @onready var blood_hit: CPUParticles2D = $BloodHit
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var attack_manager: EnemyAttackManager = $AttackManager
 @onready var health_bar: HealthBar = $HealthBar
 
-var speed : float
-var hp : float
-var attack_speed : float
-var direction : Vector2
-var target : Player
+var speed: float
+var hp: float
+var attack_speed: float
+var direction: Vector2
+var target: Player
 
 func _ready() -> void:
 	if target == null:
 		target = get_tree().get_first_node_in_group("Player")
 	speed = max_speed * SpawnManager.cur_speed_scale
 	init_healthbar()
-
+	GameStateManager.game_paused.connect(game_paused)
+	GameStateManager.game_resumed.connect(game_resumed)
 
 func init_healthbar() ->void:
 	max_hp = max_hp * SpawnManager.cur_health_scale
@@ -55,7 +56,7 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 
-func take_dmg(dmg : float) ->void:
+func take_dmg(dmg: float) ->void:
 	health_bar.show()
 	hp -= dmg
 	health_bar.set_value(hp)
@@ -74,7 +75,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		take_dmg(area.get_dmg())
 		area.die()
 
-func show_hit_effect(pos : Vector2, dir: Vector2) ->void:
+func show_hit_effect(pos: Vector2, dir: Vector2) ->void:
 	blood_hit.global_position = pos
 	blood_hit.rotation = dir.angle()
 	blood_hit.show()
@@ -86,3 +87,11 @@ func spawn_blood_fx() ->void:
 	var blood_fx = blood_fx_scene.instantiate() as BloodSplatterParticle
 	blood_fx.global_position = self.global_position
 	get_parent().add_child(blood_fx)
+
+func game_paused() ->void:
+	set_physics_process(false)
+	attack_manager.can_attack = false
+	
+func game_resumed() ->void:
+	set_physics_process(true)
+	attack_manager.can_attack = true

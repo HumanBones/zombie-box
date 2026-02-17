@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bmt68q3frn78x"]
+[gd_scene format=3 uid="uid://bmt68q3frn78x"]
 
 [ext_resource type="FontFile" uid="uid://c4ebmnin7ypsx" path="res://Scenes/MainMenu/main_menu_font.tres" id="1_uqdog"]
 [ext_resource type="Script" uid="uid://7exkqi0lplh0" path="res://Scenes/MainMenu/main_menu.gd" id="1_v763k"]
@@ -9,17 +9,17 @@ colors = PackedColorArray(0, 0.290196, 0, 1, 0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_qgdf6"]
 gradient = SubResource("Gradient_v763k")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v763k"]
-bg_color = Color(0.357191, 0.357191, 0.357191, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qgdf6"]
 bg_color = Color(0.308769, 0.308769, 0.308769, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qgbs"]
-bg_color = Color(0.295867, 0.295867, 0.295866, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v763k"]
+bg_color = Color(0.357191, 0.357191, 0.357191, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_adu2g"]
 bg_color = Color(0.321728, 0.321728, 0.321728, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qgbs"]
+bg_color = Color(0.295867, 0.295867, 0.295866, 1)
 
 [sub_resource type="Animation" id="Animation_0qgbs"]
 length = 0.001
@@ -123,7 +123,7 @@ _data = {
 &"fade_out": SubResource("Animation_qgdf6")
 }
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=1977333333]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -132,7 +132,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_v763k")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=632149261]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -148,7 +148,7 @@ scale = Vector2(1, 2)
 pivot_offset = Vector2(675.399, -90.8263)
 texture = SubResource("GradientTexture1D_qgdf6")
 
-[node name="MainContainer" type="MarginContainer" parent="."]
+[node name="MainContainer" type="MarginContainer" parent="." unique_id=1513030180]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -160,42 +160,40 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="CentralContainer" type="MarginContainer" parent="MainContainer"]
+[node name="CentralContainer" type="MarginContainer" parent="MainContainer" unique_id=1504834855]
 layout_mode = 2
 theme_override_constants/margin_top = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/CentralContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/CentralContainer" unique_id=973461873]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 20
 
-[node name="Start" type="Button" parent="MainContainer/CentralContainer/VBoxContainer"]
+[node name="Start" type="Button" parent="MainContainer/CentralContainer/VBoxContainer" unique_id=1386677816]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_uqdog")
 theme_override_font_sizes/font_size = 64
-theme_override_styles/focus = SubResource("StyleBoxFlat_v763k")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_qgdf6")
+theme_override_styles/focus = SubResource("StyleBoxFlat_v763k")
 text = "Start"
 icon_alignment = 1
 expand_icon = true
 
-[node name="Exit" type="Button" parent="MainContainer/CentralContainer/VBoxContainer"]
+[node name="Exit" type="Button" parent="MainContainer/CentralContainer/VBoxContainer" unique_id=1182152428]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_uqdog")
 theme_override_font_sizes/font_size = 64
-theme_override_styles/focus = SubResource("StyleBoxFlat_0qgbs")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_adu2g")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0qgbs")
 text = "Exit
 "
 icon_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_adu2g")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=813701461]
+libraries/ = SubResource("AnimationLibrary_adu2g")
 
 [connection signal="pressed" from="MainContainer/CentralContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="MainContainer/CentralContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

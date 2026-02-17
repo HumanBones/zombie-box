@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AttackDMGPowerUp" format=3 uid="uid://sgtkiuaepxv4"]
+
+[ext_resource type="Script" uid="uid://ds0v514s6iypy" path="res://Resources/PowerUps/PowerUpScripts/powerup_attack_dmg.gd" id="1_csffg"]
+[ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="2_c6fk5"]
+
+[resource]
+script = ExtResource("1_csffg")
+index = 3
+name = "Big Damage"
+decription = "Increases your bullet damage by"
+amount = 10.0
+texture = ExtResource("2_c6fk5")
+metadata/_custom_type_script = "uid://ds0v514s6iypy"

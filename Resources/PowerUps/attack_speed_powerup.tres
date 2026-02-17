@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AttackSpeedPowerUp" format=3 uid="uid://06k8ff61vnhs"]
+
+[ext_resource type="Script" uid="uid://b0su640c8xu3p" path="res://Resources/PowerUps/PowerUpScripts/powerup_attack_speed.gd" id="1_urrep"]
+[ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="2_xqi5s"]
+
+[resource]
+script = ExtResource("1_urrep")
+index = 1
+name = "Fast Shooter"
+decription = "Increases shooting speed by"
+amount = 10.0
+texture = ExtResource("2_xqi5s")
+metadata/_custom_type_script = "uid://b0su640c8xu3p"

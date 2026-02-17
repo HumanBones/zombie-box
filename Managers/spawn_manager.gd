@@ -25,16 +25,16 @@ var cur_wave_count : int
 func _ready() -> void:
 	PowerUpManager.powerup_used.connect(upgrade_picked)
 	scaled.connect(debug_print_stats)
-	player = get_tree().get_first_node_in_group("Player")
-
+	player = GameStateManager.player
+	
 func free() -> void:
 	cur_wave_count = 1
 
-func add_enemy(enemy : Zombie) ->void:
+func add_enemy(enemy: Zombie) ->void:
 	enemies.append(enemy)
 	enemy_count_updated.emit()
 	
-func remove_enemy(enemy : Zombie) ->void:
+func remove_enemy(enemy: Zombie) ->void:
 	enemies.erase(enemy)
 	enemy_count_updated.emit()
 	
@@ -46,17 +46,17 @@ func remove_enemy(enemy : Zombie) ->void:
 		else:
 			finished_waves.emit()
 
-func upgrade_picked() ->void:
+func upgrade_picked(powerup: PowerUp) ->void:
 	resume_game()
 	cur_wave.emit(cur_wave_count)
 	scale_dif()
 	next_wave.emit()
 
 func pause_game() ->void:
-	player.call_deferred("set_physics_process", false)
+	GameStateManager.pause_game()
 	
 func resume_game() ->void:
-	player.set_physics_process(true)
+	GameStateManager.resume_game()
 
 func scale_enemy_hp() ->void:
 	var amount = health_scale_amount * wave_count

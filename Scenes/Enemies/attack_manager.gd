@@ -2,16 +2,16 @@ extends Node2D
 
 class_name EnemyAttackManager
 
-@export var max_attack_speed : float
-@export var max_attack_dmg : float
-@export var is_ranged : bool = false
+@export var max_attack_speed: float
+@export var max_attack_dmg: float
+@export var is_ranged: bool = false
 
 @onready var timer: Timer = $Timer
 
-var attack_speed : float
-var attack_dmg : float
-var can_attack : bool = true
-var cur_target : Player
+var attack_speed: float
+var attack_dmg: float
+var can_attack: bool = true
+var cur_target: Player
 
 func _ready() -> void:
 	attack_speed = max_attack_speed

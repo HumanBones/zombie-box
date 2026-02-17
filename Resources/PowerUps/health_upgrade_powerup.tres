@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HealthUpgradePowerUp" format=3 uid="uid://b8ctxej741fod"]
+
+[ext_resource type="Script" uid="uid://dteot1wgbw2vd" path="res://Resources/PowerUps/PowerUpScripts/powerup_health_upgrade.gd" id="1_vp6eu"]
+[ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="2_hkgae"]
+
+[resource]
+script = ExtResource("1_vp6eu")
+index = 4
+name = "One Up"
+decription = "Increases your hp by"
+amount = 10.0
+texture = ExtResource("2_hkgae")
+metadata/_custom_type_script = "uid://dteot1wgbw2vd"

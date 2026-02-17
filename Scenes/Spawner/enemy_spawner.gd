@@ -4,21 +4,23 @@ class_name EnemySpawner
 
 signal finished_spawning
 
-@export var enemy_scene : PackedScene
-@export var spawn_interval : float
-@export var spawn_range : float
-@export var max_enemy_count : int
+@export var enemy_scene: PackedScene
+@export var spawn_interval: float
+@export var spawn_range: float
+@export var max_enemy_count: int
 
 @onready var timer: Timer = $Timer
 
-var enemy_holder : Node2D
-var can_spawn : bool = true
-var cur_enemy_count : int = 0
+var enemy_holder: Node2D
+var can_spawn: bool = true
+var cur_enemy_count: int = 0
 
 func _ready() -> void:
 	enemy_holder = get_tree().get_first_node_in_group("EnemyHolder")
 	timer.wait_time = spawn_interval
 	SpawnManager.next_wave.connect(start_next_wave)
+	GameStateManager.game_paused.connect(game_paused)
+	GameStateManager.game_resumed.connect(game_resumed)
 
 func _process(delta: float) -> void:
 	if !can_spawn:
@@ -37,7 +39,7 @@ func spawn_enemy() ->void:
 	cur_enemy_count += 1
 	SpawnManager.add_enemy(enemy_instance)
 
-func remove_enemy_from_list(instance : Zombie) ->void:
+func remove_enemy_from_list(instance: Zombie) ->void:
 	if instance in SpawnManager.enemies:
 		SpawnManager.remove_enemy(instance)
 
@@ -61,3 +63,11 @@ func start_next_wave() ->void:
 
 func _on_timer_timeout() -> void:
 	spawn_enemy()
+
+func game_paused() ->void:
+	timer.paused = true
+	can_spawn = false
+	
+func game_resumed() ->void:
+	timer.paused = false
+	can_spawn = true

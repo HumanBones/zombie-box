@@ -6,14 +6,14 @@ signal player_hit
 
 @export_category("Stats")
 @export_group("Start stats")
-@export var start_speed : float
-@export var start_hp : float
-@export var start_attack_range : float
+@export var start_speed: float
+@export var start_hp: float
+@export var start_attack_range: float
 
 @export_group("Max stats")
-@export var max_hp : float
-@export var max_speed : float
-@export var max_attack_range : float
+@export var max_hp: float
+@export var max_speed: float
+@export var max_attack_range: float
 
 @export_group("HealthBar")
 @export var healthbar : HealthBar
@@ -25,12 +25,15 @@ var hp : float
 var attack_speed : float
 var direction : Vector2
 var attack_range : float
+var is_dead : bool = false
 
 func _ready() -> void:
 	speed = start_speed
 	hp = start_hp
 	attack_range = start_attack_range
 	healthbar_init()
+	GameStateManager.game_paused.connect(game_paused)
+	GameStateManager.game_resumed.connect(game_resumed)
 
 func _physics_process(delta: float) -> void:
 	get_input()
@@ -75,10 +78,13 @@ func healthbar_init() ->void:
 	healthbar.set_min_value(0.0)
 	healthbar.set_max_value(max_hp)
 	
-func take_dmg(amount : float) ->void:
+func take_dmg(amount: float) ->void:
+	if is_dead:
+		return
 	hp -= amount
 	player_hit.emit()
 	if hp <= 0:
+		is_dead = true
 		die()
 	healthbar.set_value(hp)
 	player_hit_fx()
@@ -91,3 +97,12 @@ func die() ->void:
 
 func player_hit_fx() ->void:
 	CameraShakeManager.player_hit_shake()
+	
+func game_paused() ->void:
+	set_physics_process(false)
+	bullet_shooter.set_shoot(false)
+	
+func game_resumed() ->void:
+	set_physics_process(true)
+	bullet_shooter.set_shoot(true)
+	

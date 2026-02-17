@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dya3dypewkuaw"]
+[gd_scene format=3 uid="uid://dya3dypewkuaw"]
 
 [ext_resource type="Script" uid="uid://t20qw2bxvgj5" path="res://Scenes/Bullets/bullet.gd" id="1_qngn8"]
 [ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="1_tcy0y"]
@@ -6,28 +6,28 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tcy0y"]
 
-[node name="Bullet" type="Area2D" groups=["Bullets"]]
+[node name="Bullet" type="Area2D" unique_id=1980082652 groups=["Bullets"]]
 collision_layer = 8
 collision_mask = 5
 script = ExtResource("1_qngn8")
 default_life_time = 10.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=583127079]
 scale = Vector2(2.6386, 2.397)
 shape = SubResource("CircleShape2D_tcy0y")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=46172340]
 modulate = Color(1, 1, 0, 1)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_tcy0y")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1184384441]
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=580395992]
 one_shot = true
 autostart = true
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1772605032]
 texture = ExtResource("3_510l0")
 texture_scale = 0.5
 

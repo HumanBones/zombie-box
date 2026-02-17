@@ -2,7 +2,7 @@ extends Control
 
 class_name PowerUpCard
 
-@export var power_up_data : PowerUp
+@export var power_up_data: PowerUp
 
 @onready var title: Label = $MarginContainer/MarginContainer/VBoxContainer/Title
 @onready var description: Label = $MarginContainer/MarginContainer/VBoxContainer/Description
@@ -10,6 +10,7 @@ class_name PowerUpCard
 @onready var texture_rect: TextureRect = $MarginContainer/MarginContainer/VBoxContainer/TextureRect
 
 func _ready() -> void:
+	print(power_up_data)
 	button.text = "Select"
 	if power_up_data != null:
 		title.text = power_up_data.name
@@ -17,4 +18,4 @@ func _ready() -> void:
 		description.text = power_up_data.decription + str(power_up_data.amount) + " %"
 
 func _on_button_pressed() -> void:
-	PowerUpManager.add_powerup(power_up_data)
+	power_up_data.apply_powerup()

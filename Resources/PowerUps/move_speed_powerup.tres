@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MoveSpeedPowerUp" format=3 uid="uid://di32oa1mqch1u"]
+
+[ext_resource type="Script" uid="uid://menjarhem0pg" path="res://Resources/PowerUps/PowerUpScripts/powerup_move_speed.gd" id="1_xc7gj"]
+[ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="2_l5al0"]
+
+[resource]
+script = ExtResource("1_xc7gj")
+index = 5
+name = "Gotta go fast"
+decription = "Increases your move speed by"
+amount = 10.0
+texture = ExtResource("2_l5al0")
+metadata/_custom_type_script = "uid://menjarhem0pg"

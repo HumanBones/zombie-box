@@ -1,11 +1,11 @@
 extends Node
 
-signal shake(amount : float)
+signal shake(amount: float)
 
-var bullet_hit_amount : float = 0.4
-var bullet_crit_amount : float = 0.8
-var player_hit_amount : float = 1.0
-var bullet_shot_amount : float = 0.3
+var bullet_hit_amount: float = 0.4
+var bullet_crit_amount: float = 0.8
+var player_hit_amount: float = 1.0
+var bullet_shot_amount: float = 0.3
 
 func bullet_hit_shake() ->void:
 	shake.emit(bullet_hit_amount)
