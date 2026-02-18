@@ -11,7 +11,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainContainer/CenterContainer/Label:modulate")
+tracks/0/path = NodePath("MainContainer/CenterContainer/WaveLabel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -55,6 +55,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 0, 0, 0.439216)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainContainer/KillsLabel:theme_override_font_sizes/font_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [64]
 }
 
 [sub_resource type="Animation" id="Animation_k83ni"]
@@ -107,7 +119,7 @@ length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainContainer/CenterContainer/Label:modulate")
+tracks/0/path = NodePath("MainContainer/CenterContainer/WaveLabel:modulate")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -131,12 +143,30 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_8wqxc"]
+resource_name = "pop"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainContainer/KillsLabel:theme_override_font_sizes/font_size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1097.4963, 4.594793),
+"update": 1,
+"values": [96, 64]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a56j6"]
 _data = {
 &"RESET": SubResource("Animation_a56j6"),
 &"blink_label": SubResource("Animation_k83ni"),
 &"blood_fade": SubResource("Animation_6pkbx"),
-&"fade_label": SubResource("Animation_5aai8")
+&"fade_label": SubResource("Animation_5aai8"),
+&"pop": SubResource("Animation_8wqxc")
 }
 
 [node name="HUD" type="Control" unique_id=1980346936]
@@ -169,7 +199,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
@@ -180,7 +210,7 @@ size_flags_vertical = 4
 mouse_filter = 2
 theme_override_constants/margin_bottom = 200
 
-[node name="Label" type="Label" parent="MainContainer/CenterContainer" unique_id=816424327]
+[node name="WaveLabel" type="Label" parent="MainContainer/CenterContainer" unique_id=816424327]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_33i1w")
 theme_override_font_sizes/font_size = 64
@@ -207,6 +237,14 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="KillsLabel" type="Label" parent="MainContainer" unique_id=560469110]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_33i1w")
+theme_override_font_sizes/font_size = 64
+text = "000"
+horizontal_alignment = 1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1485526495]
 libraries/ = SubResource("AnimationLibrary_a56j6")
 
@@ -216,6 +254,7 @@ one_shot = true
 autostart = true
 
 [node name="GameOverTimer" type="Timer" parent="." unique_id=368294111]
+wait_time = 5.0
 one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

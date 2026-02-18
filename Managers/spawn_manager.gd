@@ -8,26 +8,27 @@ signal cur_wave(amount:int)
 signal scaled(stat:String,amount:float)
 
 @export_category("Enemy scale amount")
-var health_scale_amount : float = 0.1
-var speed_scale_amount : float = 0.1
-var dmg_scale_amount : float = 0.1
+var health_scale_amount: float = 0.1
+var speed_scale_amount: float = 0.1
+var dmg_scale_amount: float = 0.1
 
 @export_category("Enemy cur scale")
-var cur_health_scale : float = 1.0
-var cur_speed_scale : float = 1.0
+var cur_health_scale: float = 1.0
+var cur_speed_scale: float = 1.0
 var cur_dmg_scale: float = 1.0
 
+var enemies_per_wave : int = 2
 var player : Player
-var wave_count : int = 1
-var enemies : Array[Zombie]
-var cur_wave_count : int
+var wave_count: int = 1
+var enemies: Array[Zombie]
+var cur_wave_count: int
 
-func _ready() -> void:
+func _ready() ->void:
 	PowerUpManager.powerup_used.connect(upgrade_picked)
 	scaled.connect(debug_print_stats)
 	player = GameStateManager.player
 	
-func free() -> void:
+func free() ->void:
 	cur_wave_count = 1
 
 func add_enemy(enemy: Zombie) ->void:

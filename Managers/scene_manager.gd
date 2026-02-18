@@ -3,7 +3,7 @@ extends Node
 signal scene_changed
 signal game_quit
 
-var cur_scene : PackedScene
+var cur_scene: PackedScene
 
 const GAME_SCENE = preload("res://Scenes/World/world.tscn")
 const MAIN_MENU = preload("res://Scenes/MainMenu/main_menu.tscn")

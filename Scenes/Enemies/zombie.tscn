@@ -18,9 +18,9 @@ radius = 96.1873
 [node name="Zombie" type="CharacterBody2D" unique_id=1385674436 groups=["Enemy"]]
 collision_layer = 4
 script = ExtResource("1_yk0r7")
-max_speed = 50.0
-max_hp = 100.0
-attack_range = 130.0
+start_speed = 120.0
+start_hp = 100.0
+start_attack_range = 130.0
 blood_fx_scene = ExtResource("2_jhkch")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1952562771]

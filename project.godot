@@ -26,6 +26,7 @@ PowerUpManager="*res://Managers/power_up_manager.gd"
 GameStateManager="*res://Managers/game_state_manager.gd"
 CameraShakeManager="*res://Managers/camera_shake_manager.gd"
 SceneManager="*res://Managers/scene_manager.gd"
+ScoreManager="*uid://c5xwm3h20laxm"
 
 [display]
 

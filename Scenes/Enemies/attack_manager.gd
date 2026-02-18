@@ -13,7 +13,7 @@ var attack_dmg: float
 var can_attack: bool = true
 var cur_target: Player
 
-func _ready() -> void:
+func _ready() ->void:
 	attack_speed = max_attack_speed
 	attack_dmg = max_attack_dmg * SpawnManager.cur_dmg_scale
 	timer.wait_time = attack_speed
@@ -28,13 +28,13 @@ func attack() ->void:
 		
 	timer.start()
 
-func _on_timer_timeout() -> void:
+func _on_timer_timeout() ->void:
 	can_attack = true
 
-func _on_hurtbox_area_entered(area: Area2D) -> void:
+func _on_hurtbox_area_entered(area: Area2D) ->void:
 	if area.get_parent().is_in_group("Player"):
 		cur_target = area.get_parent()
 
-func _on_hurtbox_area_exited(area: Area2D) -> void:
+func _on_hurtbox_area_exited(area: Area2D) ->void:
 	if area.get_parent().is_in_group("Player"):
 		cur_target = null

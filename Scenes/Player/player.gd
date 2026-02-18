@@ -16,16 +16,16 @@ signal player_hit
 @export var max_attack_range: float
 
 @export_group("HealthBar")
-@export var healthbar : HealthBar
+@export var healthbar: HealthBar
 
 @onready var bullet_shooter: BulletShooter = $BulletShooter
 
-var speed : float
-var hp : float
-var attack_speed : float
-var direction : Vector2
-var attack_range : float
-var is_dead : bool = false
+var speed: float
+var hp: float
+var attack_speed: float
+var direction: Vector2
+var attack_range: float
+var is_dead: bool = false
 
 func _ready() -> void:
 	speed = start_speed
@@ -35,13 +35,13 @@ func _ready() -> void:
 	GameStateManager.game_paused.connect(game_paused)
 	GameStateManager.game_resumed.connect(game_resumed)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta: float) ->void:
 	get_input()
 	velocity = direction * speed
 	
 	move_and_slide()
 
-func get_closest_enemy() -> Zombie:
+func get_closest_enemy() ->Zombie:
 	var closest_enemy : Zombie
 	var enemies = get_tree().get_nodes_in_group("Enemy")
 	
@@ -67,7 +67,7 @@ func get_input() ->void:
 	var input_y = Input.get_axis("up","down")
 	direction = Vector2(input_x,input_y).normalized()
 	
-func get_bullet_direction() -> Vector2:
+func get_bullet_direction() ->Vector2:
 	var closes_enemy = get_closest_enemy()
 	if closes_enemy == null:
 		return Vector2.ZERO

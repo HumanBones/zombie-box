@@ -7,16 +7,16 @@ class_name MainMenu
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-func _ready() -> void:
+func _ready() ->void:
 	animation_player.play("fade_out")
 
 func hide_background() ->void:
 	animation_player.play("fade_in")
 
 
-func _on_start_pressed() -> void:
+func _on_start_pressed() ->void:
 	SceneManager.change_to_game_scene()
 
 
-func _on_exit_pressed() -> void:
+func _on_exit_pressed() ->void:
 	SceneManager.quit_game()

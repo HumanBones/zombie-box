@@ -5,10 +5,10 @@ class_name Zombie
 signal died
 
 @export_category("Stats")
-@export_group("Max Stats")
-@export var max_speed: float
-@export var max_hp: float
-@export var attack_range: float
+@export_group("Start Stats")
+@export var start_speed: float
+@export var start_hp: float
+@export var start_attack_range: float
 
 @export var blood_fx_scene: PackedScene
 
@@ -22,32 +22,32 @@ var hp: float
 var attack_speed: float
 var direction: Vector2
 var target: Player
+var attack_range : float
 
-func _ready() -> void:
+func _ready() ->void:
 	if target == null:
 		target = get_tree().get_first_node_in_group("Player")
-	speed = max_speed * SpawnManager.cur_speed_scale
+	speed = start_speed * SpawnManager.cur_speed_scale
+	attack_range = start_attack_range
 	init_healthbar()
 	GameStateManager.game_paused.connect(game_paused)
 	GameStateManager.game_resumed.connect(game_resumed)
 
 func init_healthbar() ->void:
-	max_hp = max_hp * SpawnManager.cur_health_scale
-	hp = max_hp
-	health_bar.set_max_value(max_hp)
+	start_hp = start_hp * SpawnManager.cur_health_scale
+	hp = start_hp
+	health_bar.set_max_value(start_hp)
 	health_bar.set_value(hp)
 	health_bar.update_min_max_value()
 	health_bar.hide()
-	
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta: float) ->void:
 	
 	navigation_agent_2d.target_position = target.global_position
 	
 	if global_position.distance_squared_to(target.global_position) > attack_range * attack_range:
 		direction = navigation_agent_2d.get_next_path_position() - global_position
 		direction = direction.normalized()
-	
 		velocity = direction * speed
 	
 	else:
@@ -65,7 +65,8 @@ func take_dmg(dmg: float) ->void:
 		health_bar.hide()
 		die()
 
-func die() -> void:
+func die() ->void:
+	ScoreManager.update_score(1)
 	spawn_blood_fx()
 	call_deferred("queue_free")
 
@@ -80,7 +81,6 @@ func show_hit_effect(pos: Vector2, dir: Vector2) ->void:
 	blood_hit.rotation = dir.angle()
 	blood_hit.show()
 	blood_hit.emitting = true
-	
 	CameraShakeManager.bullet_hit_shake()
 
 func spawn_blood_fx() ->void:
