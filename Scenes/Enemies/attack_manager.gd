@@ -2,21 +2,12 @@ extends Node2D
 
 class_name EnemyAttackManager
 
-@export var max_attack_speed: float
-@export var max_attack_dmg: float
-@export var is_ranged: bool = false
-
 @onready var timer: Timer = $Timer
 
 var attack_speed: float
 var attack_dmg: float
 var can_attack: bool = true
 var cur_target: Player
-
-func _ready() ->void:
-	attack_speed = max_attack_speed
-	attack_dmg = max_attack_dmg * SpawnManager.cur_dmg_scale
-	timer.wait_time = attack_speed
 
 func attack() ->void:
 	if !can_attack or cur_target == null:
@@ -25,7 +16,8 @@ func attack() ->void:
 	can_attack = false
 	if cur_target.has_method("take_dmg"):
 		cur_target.take_dmg(attack_dmg)
-		
+	
+	timer.wait_time = attack_speed
 	timer.start()
 
 func _on_timer_timeout() ->void:

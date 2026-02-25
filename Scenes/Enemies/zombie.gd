@@ -4,6 +4,8 @@ class_name Zombie
 
 signal died
 
+@export var enemy_type : EnemyType
+
 @export_category("Stats")
 @export_group("Start Stats")
 @export var start_speed: float
@@ -23,26 +25,30 @@ var attack_speed: float
 var direction: Vector2
 var target: Player
 var attack_range : float
+var detection_range : float
 
 func _ready() ->void:
+	set_attack_manager_stats()
 	if target == null:
 		target = get_tree().get_first_node_in_group("Player")
-	speed = start_speed * SpawnManager.cur_speed_scale
-	attack_range = start_attack_range
+	speed = enemy_type.move_speed * SpawnManager.cur_speed_scale
+	attack_range = enemy_type.attack_range
 	init_healthbar()
 	GameStateManager.game_paused.connect(game_paused)
 	GameStateManager.game_resumed.connect(game_resumed)
 
 func init_healthbar() ->void:
-	start_hp = start_hp * SpawnManager.cur_health_scale
-	hp = start_hp
-	health_bar.set_max_value(start_hp)
+	hp = enemy_type.hp * SpawnManager.cur_health_scale
+	health_bar.set_max_value(hp)
 	health_bar.set_value(hp)
 	health_bar.update_min_max_value()
 	health_bar.hide()
 
+func set_attack_manager_stats() ->void:
+	attack_manager.attack_dmg = enemy_type.dmg * SpawnManager.cur_dmg_scale
+	attack_manager.attack_speed = enemy_type.attakc_speed
+
 func _physics_process(delta: float) ->void:
-	
 	navigation_agent_2d.target_position = target.global_position
 	
 	if global_position.distance_squared_to(target.global_position) > attack_range * attack_range:

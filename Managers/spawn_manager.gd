@@ -11,11 +11,13 @@ signal scaled(stat:String,amount:float)
 var health_scale_amount: float = 0.1
 var speed_scale_amount: float = 0.1
 var dmg_scale_amount: float = 0.1
+var attack_speed_scale_amount : float = 0.1
 
 @export_category("Enemy cur scale")
 var cur_health_scale: float = 1.0
 var cur_speed_scale: float = 1.0
 var cur_dmg_scale: float = 1.0
+var cur_attack_speed_scale : float = 1.0
 
 var enemies_per_wave : int = 2
 var player : Player
@@ -74,6 +76,11 @@ func scale_enemy_dmg() ->void:
 	cur_dmg_scale += amount
 	scaled.emit("Damage",amount)
 	
+func scale_enemy_attack_speed() ->void:
+	var amount = attack_speed_scale_amount * wave_count
+	cur_attack_speed_scale += amount
+	scaled.emit("Attack speed",amount)
+	
 func get_enemy_hp_scale() ->float:
 	return cur_health_scale
 
@@ -87,6 +94,7 @@ func scale_dif() ->void:
 	scale_enemy_dmg()
 	scale_enemy_hp()
 	scale_enemy_speed()
+	scale_enemy_attack_speed()
 
 func debug_print_stats(stat: String, amount: float) ->void:
 	print(stat + " : " + str(amount))
