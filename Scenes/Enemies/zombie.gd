@@ -101,3 +101,7 @@ func game_paused() ->void:
 func game_resumed() ->void:
 	set_physics_process(true)
 	attack_manager.can_attack = true
+
+func get_target() ->Player:
+	return target
+	

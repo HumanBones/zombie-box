@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://dlayxy0phuihq" path="res://Scenes/Enemies/attack_manager.gd" id="4_8d8mn"]
 [ext_resource type="PackedScene" uid="uid://cdytee8i1eyp0" path="res://Scenes/HealthBarUI/health_bar.tscn" id="5_o6bce"]
 [ext_resource type="PackedScene" uid="uid://bijrhjabjm0si" path="res://Scenes/VFX/BloodSplatter/blood_hit.tscn" id="7_3p0w2"]
+[ext_resource type="Script" uid="uid://w18h8b685kj5" path="res://Helper/StateMachine/state_machine.gd" id="9_usnig"]
+[ext_resource type="Script" uid="uid://bi2mbecdg1mlr" path="res://Helper/StateMachine/enemy_follow.gd" id="10_7yiho"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttf1p"]
 
@@ -65,6 +67,12 @@ offset_bottom = -115.0
 [node name="BloodHit" parent="." unique_id=1895818578 instance=ExtResource("7_3p0w2")]
 visible = false
 scale = Vector2(3, 3)
+
+[node name="StateMachine" type="Node" parent="." unique_id=662446946]
+script = ExtResource("9_usnig")
+
+[node name="Follow" type="Node" parent="StateMachine" unique_id=1188912525]
+script = ExtResource("10_7yiho")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="AttackManager/Timer" to="AttackManager" method="_on_timer_timeout"]
