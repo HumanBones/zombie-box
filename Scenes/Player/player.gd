@@ -41,11 +41,11 @@ func _physics_process(delta: float) ->void:
 	
 	move_and_slide()
 
-func get_closest_enemy() ->Zombie:
-	var closest_enemy : Zombie
+func get_closest_enemy() ->Enemy:
+	var closest_enemy : Enemy
 	var enemies = get_tree().get_nodes_in_group("Enemy")
 	
-	enemies = enemies.filter(func(enemy: Zombie):
+	enemies = enemies.filter(func(enemy: Enemy):
 		return enemy.global_position.distance_squared_to(global_position) < pow(attack_range,2)
 	)
 	

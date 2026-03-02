@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://chtsu7f2xjajw"]
 
 [ext_resource type="Script" uid="uid://clqnmvpo1kyko" path="res://Resources/MainScript/enemy_type.gd" id="1_3464k"]
+[ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="2_dkytf"]
 
 [resource]
 script = ExtResource("1_3464k")
+texture = ExtResource("2_dkytf")
 name = "Basic"
 move_speed = 120.0
 hp = 100.0

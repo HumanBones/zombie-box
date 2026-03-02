@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://v843jhr60f5l"]
 
 [ext_resource type="Script" uid="uid://3jy74l86u6xr" path="res://Scenes/Spawner/enemy_spawner.gd" id="1_0lwqs"]
-[ext_resource type="PackedScene" uid="uid://chbj5tjhlx41d" path="res://Scenes/Enemies/zombie.tscn" id="2_8ij3p"]
+[ext_resource type="PackedScene" uid="uid://chbj5tjhlx41d" path="res://Scenes/Enemies/enemy.tscn" id="2_8ij3p"]
 
-[node name="Enemy_spawner" type="Node2D" unique_id=628310097]
+[node name="EnemySpawner" type="Node2D" unique_id=628310097]
 script = ExtResource("1_0lwqs")
 enemy_scene = ExtResource("2_8ij3p")
 spawn_interval = 1.0

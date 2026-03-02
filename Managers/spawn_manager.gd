@@ -22,7 +22,7 @@ var cur_attack_speed_scale : float = 1.0
 var enemies_per_wave : int = 2
 var player : Player
 var wave_count: int = 1
-var enemies: Array[Zombie]
+var enemies: Array[Enemy]
 var cur_wave_count: int
 
 func _ready() ->void:
@@ -33,11 +33,11 @@ func _ready() ->void:
 func free() ->void:
 	cur_wave_count = 1
 
-func add_enemy(enemy: Zombie) ->void:
+func add_enemy(enemy: Enemy) ->void:
 	enemies.append(enemy)
 	enemy_count_updated.emit()
 	
-func remove_enemy(enemy: Zombie) ->void:
+func remove_enemy(enemy: Enemy) ->void:
 	enemies.erase(enemy)
 	enemy_count_updated.emit()
 	

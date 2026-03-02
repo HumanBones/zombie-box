@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://6h0s2f48gjje"]
+
+[ext_resource type="Script" uid="uid://clqnmvpo1kyko" path="res://Resources/MainScript/enemy_type.gd" id="1_dsj64"]
+
+[resource]
+script = ExtResource("1_dsj64")
+is_ranged = true
+name = "Ranged"
+move_speed = 100.0
+hp = 100.0
+attack_range = 200.0
+attakc_speed = 2.0
+dmg = 10.0
+detection_range = 200.0
+exp_value = 10.0
+metadata/_custom_type_script = "uid://clqnmvpo1kyko"

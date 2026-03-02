@@ -29,14 +29,14 @@ func spawn_enemy() ->void:
 	if cur_enemy_count >= max_enemy_count:
 		finished_spawning.emit()
 		return
-	var enemy_instance = enemy_scene.instantiate() as Zombie
+	var enemy_instance = enemy_scene.instantiate() as Enemy
 	enemy_instance.global_position = get_random_spawn_point()
 	enemy_instance.died.connect(SpawnManager.remove_enemy)
 	enemy_holder.add_child(enemy_instance)
 	cur_enemy_count += 1
 	SpawnManager.add_enemy(enemy_instance)
 
-func remove_enemy_from_list(instance: Zombie) ->void:
+func remove_enemy_from_list(instance: Enemy) ->void:
 	if instance in SpawnManager.enemies:
 		SpawnManager.remove_enemy(instance)
 

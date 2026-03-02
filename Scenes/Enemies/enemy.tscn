@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://chbj5tjhlx41d"]
+
+[ext_resource type="Script" uid="uid://cr4d3nx2d3xgw" path="res://Scenes/Enemies/enemy.gd" id="1_4bcle"]
+[ext_resource type="Resource" uid="uid://chtsu7f2xjajw" path="res://Resources/EnemyTypes/basic.tres" id="2_beuat"]
+[ext_resource type="PackedScene" uid="uid://e7pfcrhvbxhi" path="res://Scenes/VFX/BloodSplatter/blood_splatter_particle.tscn" id="3_7ubbs"]
+[ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="4_ycxl0"]
+[ext_resource type="PackedScene" uid="uid://xn55x5wbcwvx" path="res://Scenes/Collision/hitbox.tscn" id="5_pko3b"]
+[ext_resource type="Script" uid="uid://dlayxy0phuihq" path="res://Scenes/Enemies/attack_manager.gd" id="6_53ao7"]
+[ext_resource type="PackedScene" uid="uid://cdytee8i1eyp0" path="res://Scenes/HealthBarUI/health_bar.tscn" id="7_3hxf3"]
+[ext_resource type="PackedScene" uid="uid://bijrhjabjm0si" path="res://Scenes/VFX/BloodSplatter/blood_hit.tscn" id="8_xedeb"]
+[ext_resource type="Script" uid="uid://w18h8b685kj5" path="res://Helper/StateMachine/state_machine.gd" id="9_kx2d8"]
+[ext_resource type="Script" uid="uid://dkmlejqyr02gd" path="res://Helper/StateMachine/enemy_attack.gd" id="10_beuat"]
+[ext_resource type="Script" uid="uid://bi2mbecdg1mlr" path="res://Helper/StateMachine/enemy_follow.gd" id="10_lobkc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttf1p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yk0r7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8d8mn"]
+radius = 96.1873
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1385674436 groups=["Enemy"]]
+collision_layer = 4
+script = ExtResource("1_4bcle")
+enemy_type = ExtResource("2_beuat")
+blood_fx_scene = ExtResource("3_7ubbs")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1952562771]
+modulate = Color(0.141454, 0.63776, 0.284094, 1)
+texture = ExtResource("4_ycxl0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=491717803]
+scale = Vector2(4.52, 5)
+shape = SubResource("RectangleShape2D_ttf1p")
+
+[node name="Hitbox" parent="." unique_id=623909717 instance=ExtResource("5_pko3b")]
+collision_layer = 4
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1511555438]
+scale = Vector2(6.49909, 6.27396)
+shape = SubResource("RectangleShape2D_yk0r7")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=866971557]
+
+[node name="AttackManager" type="Node2D" parent="." unique_id=1115878904]
+script = ExtResource("6_53ao7")
+
+[node name="Timer" type="Timer" parent="AttackManager" unique_id=1595844448]
+one_shot = true
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=437399493]
+collision_layer = 5
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1360996007]
+visible = false
+shape = SubResource("CircleShape2D_8d8mn")
+
+[node name="HealthBar" parent="." unique_id=494108094 instance=ExtResource("7_3hxf3")]
+offset_left = -78.0
+offset_top = -115.0
+offset_right = -78.0
+offset_bottom = -115.0
+
+[node name="BloodHit" parent="." unique_id=1895818578 instance=ExtResource("8_xedeb")]
+visible = false
+scale = Vector2(3, 3)
+
+[node name="StateMachine" type="Node" parent="." unique_id=662446946 node_paths=PackedStringArray("inital_state")]
+script = ExtResource("9_kx2d8")
+inital_state = NodePath("Attack")
+
+[node name="Attack" type="Node" parent="StateMachine" unique_id=325637199 node_paths=PackedStringArray("enemy")]
+script = ExtResource("10_beuat")
+enemy = NodePath("../..")
+
+[node name="Follow" type="Node" parent="StateMachine" unique_id=1188912525 node_paths=PackedStringArray("enemy")]
+script = ExtResource("10_lobkc")
+enemy = NodePath("../..")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="AttackManager/Timer" to="AttackManager" method="_on_timer_timeout"]
+[connection signal="area_entered" from="Hurtbox" to="AttackManager" method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="Hurtbox" to="AttackManager" method="_on_hurtbox_area_exited"]

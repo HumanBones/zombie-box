@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://dvr1lh4ydfyyq"]
+
+[ext_resource type="Script" uid="uid://clqnmvpo1kyko" path="res://Resources/MainScript/enemy_type.gd" id="1_572t6"]
+
+[resource]
+script = ExtResource("1_572t6")
+name = "Tank"
+move_speed = 70.0
+hp = 200.0
+attack_range = 50.0
+attakc_speed = 3.0
+dmg = 50.0
+detection_range = 80.0
+exp_value = 20.0
+metadata/_custom_type_script = "uid://clqnmvpo1kyko"

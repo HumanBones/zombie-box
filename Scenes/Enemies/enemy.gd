@@ -1,21 +1,13 @@
 extends CharacterBody2D
 
-class_name Zombie
+class_name Enemy
 
 signal died
 
 @export var enemy_type : EnemyType
-
-@export_category("Stats")
-@export_group("Start Stats")
-@export var start_speed: float
-@export var start_hp: float
-@export var start_attack_range: float
-
 @export var blood_fx_scene: PackedScene
 
 @onready var blood_hit: CPUParticles2D = $BloodHit
-@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var attack_manager: EnemyAttackManager = $AttackManager
 @onready var health_bar: HealthBar = $HealthBar
 
@@ -47,20 +39,6 @@ func init_healthbar() ->void:
 func set_attack_manager_stats() ->void:
 	attack_manager.attack_dmg = enemy_type.dmg * SpawnManager.cur_dmg_scale
 	attack_manager.attack_speed = enemy_type.attakc_speed
-
-func _physics_process(delta: float) ->void:
-	navigation_agent_2d.target_position = target.global_position
-	
-	if global_position.distance_squared_to(target.global_position) > attack_range * attack_range:
-		direction = navigation_agent_2d.get_next_path_position() - global_position
-		direction = direction.normalized()
-		velocity = direction * speed
-	
-	else:
-		velocity = Vector2.ZERO
-		attack_manager.attack()
-		
-	move_and_slide()
 
 func take_dmg(dmg: float) ->void:
 	health_bar.show()

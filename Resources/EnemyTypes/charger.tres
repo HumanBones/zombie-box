@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://d0r6f48x7dg47"]
+
+[ext_resource type="Script" uid="uid://clqnmvpo1kyko" path="res://Resources/MainScript/enemy_type.gd" id="1_rci04"]
+
+[resource]
+script = ExtResource("1_rci04")
+name = "Charger"
+move_speed = 200.0
+hp = 20.0
+attack_range = 100.0
+attakc_speed = 0.5
+dmg = 1.0
+detection_range = 100.0
+exp_value = 5.0
+metadata/_custom_type_script = "uid://clqnmvpo1kyko"
