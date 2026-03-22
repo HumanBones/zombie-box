@@ -26,8 +26,7 @@ func _ready() ->void:
 	speed = enemy_type.move_speed * SpawnManager.cur_speed_scale
 	attack_range = enemy_type.attack_range
 	init_healthbar()
-	GameStateManager.game_paused.connect(game_paused)
-	GameStateManager.game_resumed.connect(game_resumed)
+
 
 func init_healthbar() ->void:
 	hp = enemy_type.hp * SpawnManager.cur_health_scale
@@ -71,14 +70,6 @@ func spawn_blood_fx() ->void:
 	var blood_fx = blood_fx_scene.instantiate() as BloodSplatterParticle
 	blood_fx.global_position = self.global_position
 	get_parent().add_child(blood_fx)
-
-func game_paused() ->void:
-	set_physics_process(false)
-	attack_manager.can_attack = false
-	
-func game_resumed() ->void:
-	set_physics_process(true)
-	attack_manager.can_attack = true
 
 func get_target() ->Player:
 	return target

@@ -8,6 +8,8 @@ var cur_state : State
 var states : Dictionary = {}
 
 func _ready() -> void:
+	GameStateManager.game_paused.connect(game_paused)
+	GameStateManager.game_resumed.connect(game_resumed)
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child
@@ -39,3 +41,9 @@ func on_child_transition(state: State, new_state_name: String) ->void:
 		
 	new_state.enter()
 	cur_state = new_state
+
+func game_paused() ->void:
+	set_physics_process(false)
+	
+func game_resumed() ->void:
+	set_physics_process(true)
