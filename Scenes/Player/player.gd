@@ -91,7 +91,6 @@ func take_dmg(amount: float) ->void:
 
 func die() ->void:
 	GameStateManager.set_game_over()
-	print("you died")
 	set_physics_process(false)
 	bullet_shooter.set_shoot(false)
 

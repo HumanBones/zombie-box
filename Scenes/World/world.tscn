@@ -56,6 +56,8 @@ spawn_range = 500.0
 position = Vector2(349, 362)
 spawn_range = 500.0
 
+[node name="VFXHolder" type="Node2D" parent="." unique_id=726619226 groups=["VFXHolder"]]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1655367428]
 
 [node name="HUD" parent="CanvasLayer" unique_id=387080661 instance=ExtResource("6_adcqc")]

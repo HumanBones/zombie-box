@@ -41,6 +41,7 @@ Bullets=""
 BulletHolder=""
 EnemyHolder=""
 PlayerUpgradeManager=""
+VFXHolder=""
 
 [input]
 

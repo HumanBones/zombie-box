@@ -3,11 +3,13 @@ extends Node
 class_name StateMachine
 
 @export var inital_state : State
+@export var enemy : Enemy
 
 var cur_state : State
 var states : Dictionary = {}
 
 func _ready() -> void:
+	enemy.died.connect(enemy_died)
 	GameStateManager.game_paused.connect(game_paused)
 	GameStateManager.game_resumed.connect(game_resumed)
 	for child in get_children():
@@ -31,6 +33,9 @@ func on_child_transition(state: State, new_state_name: String) ->void:
 	if state != cur_state:
 		return
 
+	change_state(new_state_name)
+
+func change_state(new_state_name : String) ->void:
 	var new_state : State = states.get(new_state_name.to_lower())
 	
 	if !new_state:
@@ -47,3 +52,7 @@ func game_paused() ->void:
 	
 func game_resumed() ->void:
 	set_physics_process(true)
+
+func enemy_died(enemy:Enemy) ->void:
+	change_state("die")
+	

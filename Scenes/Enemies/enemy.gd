@@ -2,10 +2,9 @@ extends CharacterBody2D
 
 class_name Enemy
 
-signal died
+signal died(node:Enemy)
 
 @export var enemy_type : EnemyType
-@export var blood_fx_scene: PackedScene
 
 @onready var blood_hit: CPUParticles2D = $BloodHit
 @onready var attack_manager: EnemyAttackManager = $AttackManager
@@ -46,12 +45,6 @@ func take_dmg(dmg: float) ->void:
 	if hp < 0:
 		died.emit(self)
 		health_bar.hide()
-		die()
-
-func die() ->void:
-	ScoreManager.update_score(1)
-	spawn_blood_fx()
-	call_deferred("queue_free")
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Bullets"):
@@ -66,10 +59,6 @@ func show_hit_effect(pos: Vector2, dir: Vector2) ->void:
 	blood_hit.emitting = true
 	CameraShakeManager.bullet_hit_shake()
 
-func spawn_blood_fx() ->void:
-	var blood_fx = blood_fx_scene.instantiate() as BloodSplatterParticle
-	blood_fx.global_position = self.global_position
-	get_parent().add_child(blood_fx)
 
 func get_target() ->Player:
 	return target

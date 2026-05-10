@@ -15,6 +15,9 @@ func enter() ->void:
 func physics_update(_delta : float) ->void:
 	navigation_agent_2d.target_position = target.global_position
 	
+	if GameStateManager.cur_game_state == GameStateManager.GameState.GAMEOVER:
+		transitioned.emit(self,"idle")
+	
 	if enemy.global_position.distance_squared_to(target.global_position) > enemy.attack_range * enemy.attack_range:
 		direction = navigation_agent_2d.get_next_path_position() - enemy.global_position
 		direction = direction.normalized()

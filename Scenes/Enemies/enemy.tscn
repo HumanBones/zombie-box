@@ -9,8 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://cdytee8i1eyp0" path="res://Scenes/HealthBarUI/health_bar.tscn" id="7_3hxf3"]
 [ext_resource type="PackedScene" uid="uid://bijrhjabjm0si" path="res://Scenes/VFX/BloodSplatter/blood_hit.tscn" id="8_xedeb"]
 [ext_resource type="Script" uid="uid://w18h8b685kj5" path="res://Helper/StateMachine/state_machine.gd" id="9_kx2d8"]
+[ext_resource type="Script" uid="uid://cn4vuufbvgjsd" path="res://Helper/StateMachine/enemy_start.gd" id="10_7ubbs"]
 [ext_resource type="Script" uid="uid://dkmlejqyr02gd" path="res://Helper/StateMachine/enemy_attack.gd" id="10_beuat"]
 [ext_resource type="Script" uid="uid://bi2mbecdg1mlr" path="res://Helper/StateMachine/enemy_follow.gd" id="10_lobkc"]
+[ext_resource type="Script" uid="uid://864o3utep2nv" path="res://Helper/StateMachine/enemy_die.gd" id="13_ycxl0"]
+[ext_resource type="Script" uid="uid://dbogjc7hsgm8s" path="res://Helper/StateMachine/enemy_idle.gd" id="14_pko3b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ttf1p"]
 
@@ -23,7 +26,6 @@ radius = 96.1873
 collision_layer = 4
 script = ExtResource("1_4bcle")
 enemy_type = ExtResource("2_beuat")
-blood_fx_scene = ExtResource("3_7ubbs")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1952562771]
 modulate = Color(0.141454, 0.63776, 0.284094, 1)
@@ -67,9 +69,17 @@ offset_bottom = -115.0
 visible = false
 scale = Vector2(3, 3)
 
-[node name="StateMachine" type="Node" parent="." unique_id=662446946 node_paths=PackedStringArray("inital_state")]
+[node name="StateMachine" type="Node" parent="." unique_id=662446946 node_paths=PackedStringArray("inital_state", "enemy")]
 script = ExtResource("9_kx2d8")
-inital_state = NodePath("Attack")
+inital_state = NodePath("Start")
+enemy = NodePath("..")
+
+[node name="Start" type="Node" parent="StateMachine" unique_id=1803901684]
+script = ExtResource("10_7ubbs")
+
+[node name="Timer" type="Timer" parent="StateMachine/Start" unique_id=1289285371]
+wait_time = 0.5
+one_shot = true
 
 [node name="Attack" type="Node" parent="StateMachine" unique_id=325637199 node_paths=PackedStringArray("enemy")]
 script = ExtResource("10_beuat")
@@ -79,7 +89,16 @@ enemy = NodePath("../..")
 script = ExtResource("10_lobkc")
 enemy = NodePath("../..")
 
+[node name="Die" type="Node" parent="StateMachine" unique_id=1761080677 node_paths=PackedStringArray("enemy")]
+script = ExtResource("13_ycxl0")
+blood_fx_scene = ExtResource("3_7ubbs")
+enemy = NodePath("../..")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1079335622]
+script = ExtResource("14_pko3b")
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="AttackManager/Timer" to="AttackManager" method="_on_timer_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="AttackManager" method="_on_hurtbox_area_entered"]
 [connection signal="area_exited" from="Hurtbox" to="AttackManager" method="_on_hurtbox_area_exited"]
+[connection signal="timeout" from="StateMachine/Start/Timer" to="StateMachine/Start" method="_on_timer_timeout"]

@@ -13,6 +13,8 @@ func enter() ->void:
 	attack_manager.attack()
 
 func physics_update(_delta : float) ->void:
+	if GameStateManager.cur_game_state == GameStateManager.GameState.GAMEOVER:
+		transitioned.emit(self,"idle")
 	if enemy.global_position.distance_squared_to(target.global_position) > enemy.attack_range * enemy.attack_range:
 		transitioned.emit(self,"follow")
 	else:
