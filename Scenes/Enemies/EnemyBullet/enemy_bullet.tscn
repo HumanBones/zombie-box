@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bystdsuxkfy7m"]
+
+[ext_resource type="PackedScene" uid="uid://dya3dypewkuaw" path="res://Scenes/Bullets/bullet.tscn" id="1_mtb3n"]
+
+[node name="EnemyBullet" unique_id=1980082652 groups=["EnemyBullet"] instance=ExtResource("1_mtb3n")]
+collision_layer = 16
+collision_mask = 3
+default_life_time = 20.0

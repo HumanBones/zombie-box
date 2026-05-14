@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://decjw8vspw5e3" path="res://Scenes/Player/player.gd" id="1_xpcdj"]
 [ext_resource type="PackedScene" uid="uid://xn55x5wbcwvx" path="res://Scenes/Collision/hitbox.tscn" id="2_a3d8c"]
 [ext_resource type="PackedScene" uid="uid://c6vlx7rixjkjy" path="res://Scenes/Bullets/bullet_shooter.tscn" id="4_mtuoh"]
+[ext_resource type="PackedScene" uid="uid://heexqgpy82sc" path="res://Scenes/Player/player_bullet.tscn" id="5_dd0ac"]
 [ext_resource type="Script" uid="uid://cgtird4fdbeb8" path="res://Scenes/Player/player_upgrade_manager.gd" id="5_htcer"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3d8c"]
@@ -30,14 +31,16 @@ texture = ExtResource("1_uvnfx")
 
 [node name="Hitbox" parent="." unique_id=109896063 instance=ExtResource("2_a3d8c")]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 21
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=98686334]
 scale = Vector2(5.96, 5.92)
 shape = SubResource("RectangleShape2D_xpcdj")
 
 [node name="BulletShooter" parent="." unique_id=1792268156 node_paths=PackedStringArray("parent", "gun_point") instance=ExtResource("4_mtuoh")]
+bullet_scene = ExtResource("5_dd0ac")
 parent = NodePath("..")
+gun_point = NodePath("../GunPoint")
 start_attack_speed = 0.5
 start_bullet_size = 1.0
 start_bullet_speed = 500.0
@@ -46,7 +49,6 @@ max_attack_speed = 0.1
 max_bullet_size = 2.0
 max_bullet_speed = 2000.0
 max_bullet_dmg = 100.0
-gun_point = NodePath("../GunPoint")
 
 [node name="PlayerUpgradeManager" type="Node2D" parent="." unique_id=563468371 node_paths=PackedStringArray("player", "bullet_shooter") groups=["PlayerUpgradeManager"]]
 script = ExtResource("5_htcer")
@@ -54,3 +56,5 @@ player = NodePath("..")
 bullet_shooter = NodePath("../BulletShooter")
 
 [node name="GunPoint" type="Marker2D" parent="." unique_id=272919056]
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

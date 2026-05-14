@@ -14,6 +14,7 @@ var life_time: float
 func _ready() -> void:
 	life_time = default_life_time
 	timer.wait_time = life_time
+	timer.start()
 	GameStateManager.game_paused.connect(game_paused)
 	GameStateManager.game_resumed.connect(game_resumed)
 

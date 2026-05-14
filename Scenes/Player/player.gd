@@ -105,3 +105,8 @@ func game_resumed() ->void:
 	set_physics_process(true)
 	bullet_shooter.set_shoot(true)
 	
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("EnemyBullet") and area.has_method("get_dmg"):
+		take_dmg(area.get_dmg())
+		area.call_deferred("queue_free")

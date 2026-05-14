@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://e7pfcrhvbxhi" path="res://Scenes/VFX/BloodSplatter/blood_splatter_particle.tscn" id="3_7ubbs"]
 [ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="4_ycxl0"]
 [ext_resource type="PackedScene" uid="uid://xn55x5wbcwvx" path="res://Scenes/Collision/hitbox.tscn" id="5_pko3b"]
+[ext_resource type="PackedScene" uid="uid://dc8p0wpqoh4f3" path="res://Scenes/Enemies/EnemyBullet/enemy_bullet_shooter.tscn" id="6_3hxf3"]
 [ext_resource type="Script" uid="uid://dlayxy0phuihq" path="res://Scenes/Enemies/attack_manager.gd" id="6_53ao7"]
 [ext_resource type="PackedScene" uid="uid://cdytee8i1eyp0" path="res://Scenes/HealthBarUI/health_bar.tscn" id="7_3hxf3"]
 [ext_resource type="PackedScene" uid="uid://bijrhjabjm0si" path="res://Scenes/VFX/BloodSplatter/blood_hit.tscn" id="8_xedeb"]
@@ -26,6 +27,8 @@ radius = 96.1873
 collision_layer = 4
 script = ExtResource("1_4bcle")
 enemy_type = ExtResource("2_beuat")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=66086978]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1952562771]
 modulate = Color(0.141454, 0.63776, 0.284094, 1)
@@ -50,6 +53,18 @@ script = ExtResource("6_53ao7")
 
 [node name="Timer" type="Timer" parent="AttackManager" unique_id=1595844448]
 one_shot = true
+
+[node name="EnemyBulletShooter" parent="AttackManager" unique_id=1750902186 node_paths=PackedStringArray("parent", "gun_point") instance=ExtResource("6_3hxf3")]
+parent = NodePath("..")
+gun_point = NodePath("../../Marker2D")
+start_attack_speed = 0.5
+start_bullet_size = 1.0
+start_bullet_speed = 500.0
+start_bullet_dmg = 10.0
+max_attack_speed = 0.1
+max_bullet_size = 2.0
+max_bullet_speed = 2000.0
+max_bullet_dmg = 100.0
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=437399493]
 collision_layer = 5
@@ -99,6 +114,4 @@ script = ExtResource("14_pko3b")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="AttackManager/Timer" to="AttackManager" method="_on_timer_timeout"]
-[connection signal="area_entered" from="Hurtbox" to="AttackManager" method="_on_hurtbox_area_entered"]
-[connection signal="area_exited" from="Hurtbox" to="AttackManager" method="_on_hurtbox_area_exited"]
 [connection signal="timeout" from="StateMachine/Start/Timer" to="StateMachine/Start" method="_on_timer_timeout"]

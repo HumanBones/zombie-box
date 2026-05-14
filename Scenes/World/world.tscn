@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://c8jt6j3s1ur1e" path="res://Resources/PowerUps/bullet_speed_powerup.tres" id="11_dr8i3"]
 [ext_resource type="Resource" uid="uid://b8ctxej741fod" path="res://Resources/PowerUps/health_upgrade_powerup.tres" id="12_7aaxd"]
 [ext_resource type="Resource" uid="uid://di32oa1mqch1u" path="res://Resources/PowerUps/move_speed_powerup.tres" id="13_hiquf"]
+[ext_resource type="PackedScene" uid="uid://b0vvx21munr7y" path="res://Scenes/Enemies/EnemyBullet/ranged_enemy.tscn" id="14_dbvd7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_yp2ti"]
 vertices = PackedVector2Array(41.3828, -39.0312, -15991.8, -6.78125, -16056, -2198.82, -61.3984, -2218.17)
@@ -65,6 +66,9 @@ spawn_range = 500.0
 [node name="PowerUp" parent="CanvasLayer" unique_id=944388874 instance=ExtResource("4_l1hd3")]
 visible = false
 power_up_array = Array[ExtResource("7_fcotr")]([ExtResource("8_vbhkl"), ExtResource("9_dbvd7"), ExtResource("10_4pv6w"), ExtResource("11_dr8i3"), ExtResource("12_7aaxd"), ExtResource("13_hiquf")])
+
+[node name="RangedEnemy" parent="." unique_id=1385674436 instance=ExtResource("14_dbvd7")]
+position = Vector2(962, 999)
 
 [connection signal="player_hit" from="Player" to="CanvasLayer/HUD" method="_on_player_player_hit"]
 

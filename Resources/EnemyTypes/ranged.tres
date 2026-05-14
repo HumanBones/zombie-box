@@ -1,15 +1,17 @@
 [gd_resource type="Resource" script_class="EnemyType" format=3 uid="uid://6h0s2f48gjje"]
 
 [ext_resource type="Script" uid="uid://clqnmvpo1kyko" path="res://Resources/MainScript/enemy_type.gd" id="1_dsj64"]
+[ext_resource type="Texture2D" uid="uid://bug08g5iiwatu" path="res://icon.svg" id="2_lk00u"]
 
 [resource]
 script = ExtResource("1_dsj64")
+texture = ExtResource("2_lk00u")
 is_ranged = true
 name = "Ranged"
 move_speed = 100.0
 hp = 100.0
-attack_range = 200.0
-attakc_speed = 2.0
+attack_range = 400.0
+attakc_speed = 1.0
 dmg = 10.0
 detection_range = 200.0
 exp_value = 10.0

@@ -6,6 +6,7 @@ signal bullet_spawned
 
 @export var bullet_scene: PackedScene
 @export var parent: Node2D
+@export var gun_point: Marker2D
 
 @export_group("Start stats")
 @export var start_attack_speed: float
@@ -18,8 +19,6 @@ signal bullet_spawned
 @export var max_bullet_size: float
 @export var max_bullet_speed: float
 @export var max_bullet_dmg: float
-
-@export var gun_point: Marker2D
 
 @onready var timer: Timer = $Timer
 @onready var point_light_2d: PointLight2D = $PointLight2D
@@ -57,7 +56,7 @@ func spawn_bullet() ->void:
 		
 	var bullet_instance = bullet_scene.instantiate() as Bullet
 	bullet_instance.direction = bullet_direction
-	bullet_instance.global_position = parent.global_position
+	bullet_instance.global_position = gun_point.global_position
 	bullet_instance.set_dmg(bullet_dmg)
 	bullet_instance.set_size(bullet_size)
 	bullet_instance.set_speed(bullet_speed)

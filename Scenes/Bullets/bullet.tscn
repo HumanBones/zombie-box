@@ -6,11 +6,10 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tcy0y"]
 
-[node name="Bullet" type="Area2D" unique_id=1980082652 groups=["Bullets"]]
+[node name="Bullet" type="Area2D" unique_id=1980082652]
 collision_layer = 8
 collision_mask = 5
 script = ExtResource("1_qngn8")
-default_life_time = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=583127079]
 scale = Vector2(2.6386, 2.397)
@@ -25,7 +24,6 @@ texture = ExtResource("1_tcy0y")
 
 [node name="Timer" type="Timer" parent="." unique_id=580395992]
 one_shot = true
-autostart = true
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1772605032]
 texture = ExtResource("3_510l0")

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://heexqgpy82sc"]
+
+[ext_resource type="PackedScene" uid="uid://dya3dypewkuaw" path="res://Scenes/Bullets/bullet.tscn" id="1_vghvw"]
+
+[node name="PlayerBullet" unique_id=1980082652 groups=["Bullets"] instance=ExtResource("1_vghvw")]
+default_life_time = 10.0

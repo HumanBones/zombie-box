@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b0vvx21munr7y"]
+
+[ext_resource type="PackedScene" uid="uid://chbj5tjhlx41d" path="res://Scenes/Enemies/enemy.tscn" id="1_a17y5"]
+[ext_resource type="Resource" uid="uid://6h0s2f48gjje" path="res://Resources/EnemyTypes/ranged.tres" id="2_b5u1x"]
+
+[node name="RangedEnemy" unique_id=1385674436 instance=ExtResource("1_a17y5")]
+modulate = Color(0.9999978, 0.18100652, 0.2874694, 1)
+enemy_type = ExtResource("2_b5u1x")

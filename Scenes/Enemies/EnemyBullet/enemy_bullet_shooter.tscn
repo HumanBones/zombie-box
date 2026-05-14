@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dc8p0wpqoh4f3"]
+
+[ext_resource type="PackedScene" uid="uid://c6vlx7rixjkjy" path="res://Scenes/Bullets/bullet_shooter.tscn" id="1_5rdaa"]
+[ext_resource type="PackedScene" uid="uid://bystdsuxkfy7m" path="res://Scenes/Enemies/EnemyBullet/enemy_bullet.tscn" id="2_scgkj"]
+
+[node name="EnemyBulletShooter" unique_id=1750902186 instance=ExtResource("1_5rdaa")]
+bullet_scene = ExtResource("2_scgkj")
